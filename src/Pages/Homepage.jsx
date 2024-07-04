@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import ProductList from './ProductList';
+//import React, { useState } from 'react';
+//import { Link } from 'react-router-dom';
+//import ProductList from './ProductList';
 import PropTypes from 'prop-types';
-import ProductModal from './ProductModal';
+import Hero from '../Sections/Hero';
+//import ProductModal from './ProductModal';
 
 const Homepage = ({ products, addToCart }) => {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+ // const [selectedProduct, setSelectedProduct] = useState(null);
 
   return (
     <div>
-      <h1>Welcome to the Online Store</h1>
+     {/* <h1>Welcome to the Online Store</h1>
       <ProductList products={products} addToCart={addToCart} setSelectedProduct={setSelectedProduct} />
       <nav>
         <Link to="/cart">View Cart</Link>
@@ -20,7 +21,8 @@ const Homepage = ({ products, addToCart }) => {
           onClose={() => setSelectedProduct(null)}
           addToCart={addToCart}
         />
-      )}
+      )}*/}
+    <Hero/>
     </div>
   );
 };
