@@ -9,7 +9,7 @@ const Homepage = ({ products, addToCart }) => {
  // const [selectedProduct, setSelectedProduct] = useState(null);
 
   return (
-    <div>
+    <div className="bg-[#F5F5F5]">
      {/* <h1>Welcome to the Online Store</h1>
       <ProductList products={products} addToCart={addToCart} setSelectedProduct={setSelectedProduct} />
       <nav>
