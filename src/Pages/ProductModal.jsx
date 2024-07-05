@@ -1,30 +1,23 @@
-import React, { useState } from 'react';
+// ProductModal.jsx
+import React from 'react';
 import PropTypes from 'prop-types';
-import './ProductModal.css';
 
-const ProductModal = ({ product, onClose, addToCart }) => {
-  const [quantity, setQuantity] = useState(1);
-
-  const handleQuantityChange = (amount) => {
-    setQuantity(prevQuantity => Math.max(1, prevQuantity + amount));
-  };
-
+const ProductModal = ({ product, quantity, setQuantity, handleAddQuantity, onClose }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <span className="close" onClick={onClose}>&times;</span>
-        <h2>{product.name}</h2>
-        <p>Price: ${product.price}</p>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h3>{product.name}</h3>
+        <img src={product.pic} alt={product.name} width="100" />
+        <p>{product.review}</p>
+        <p>Rating: {product.rating} / 5</p>
+        <p>${product.price}</p>
         <div>
-          <button onClick={() => handleQuantityChange(-1)} disabled={quantity <= 1}>-</button>
+          <button onClick={() => setQuantity(quantity - 1)} disabled={quantity <= 1}>-</button>
           <span>{quantity}</span>
-          <button onClick={() => handleQuantityChange(1)}>+</button>
+          <button onClick={() => setQuantity(quantity + 1)}>+</button>
         </div>
-        <button onClick={() => {
-          addToCart(product, quantity);
-          onClose();
-        }}>Add to Cart</button>
+        <button onClick={handleAddQuantity}>Add to Cart</button>
+        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );
@@ -35,9 +28,14 @@ ProductModal.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    pic: PropTypes.string.isRequired,
+    review: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
   }).isRequired,
+  quantity: PropTypes.number.isRequired,
+  setQuantity: PropTypes.func.isRequired,
+  handleAddQuantity: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductModal;
