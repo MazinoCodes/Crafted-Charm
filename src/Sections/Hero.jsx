@@ -11,7 +11,7 @@ import tag from '../icons/Shopping tag icon.svg'
 import home from '../icons/Home icon.svg'
 const Hero = () => {
   return (
-    <div className="flex flex-col w-[100vw] px-10 pt-3 justify-center ">
+    <div className="flex flex-col w-[90vw] pt-8 justify-center ">
       <div className="flex flex-row justify-between items-center">
         <h1 className="font-semibold text-xl">Crafted Charm</h1>
         <div className="flex flex-row gap-4 text-[#747373] ">

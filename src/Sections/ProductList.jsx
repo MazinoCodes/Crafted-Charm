@@ -1,5 +1,3 @@
-// ProductList.jsx
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import star from '../icons/Star.svg'
 import heart from '../icons/Heart.svg'
@@ -20,9 +18,9 @@ const ProductList = ({ products, addToCart}) => {
   };*/
 
   return (
-    <div className='flex flex-col justify-center w-[100vw] px-8 items-center gap-[60px]'>
+    <div className='flex flex-col justify-center w-[95vw] px-8 items-center gap-[60px]'>
       <h2 className='font-medium text-[32px] text-center mb-[40px]'>Our Products</h2>
-      <div className='flex flex-row justify-between w-[95vw] mx-auto'>
+      <div className='flex flex-row justify-between w-[90vw] mx-auto'>
         <div className='flex flex-row items-center justify-between gap-[30px] text-[#747373] font-semibold'>
         <button className='text-black '>All</button>
         <button>Living Room</button>
@@ -50,8 +48,8 @@ const ProductList = ({ products, addToCart}) => {
           
             </div>
             <div className='flex flex-row gap-2'>
-                <img src={addCart} alt="" />
-                <img src={heart} alt="" />
+               <button><img src={addCart} alt="" /></button> 
+               <button> <img src={heart} alt="" /></button> 
             </div>
           </div>
           
