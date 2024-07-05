@@ -5,6 +5,7 @@ import heroimg from '../images/HeroImage.svg'
 import arrow from '../icons/Arrow.svg'
 import leftArrow from '../icons/LeftArrow.svg'
 import rightArrow from '../icons/RightArrow.svg'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
@@ -14,12 +15,12 @@ const Hero = () => {
         <div className="flex flex-row gap-4 text-[#747373] ">
             <a href="" className="text-[#343A40] font-semibold">Home</a>
             
-            <a href="" className="flex flex-row gap-1 items-center">Product <img src={drop} alt="" /></a>
+            <a href="#ourproducts" className="flex flex-row gap-1 items-center">Product <img src={drop} alt="" /></a>
             <a href="">Contact Us</a>
         </div>
         <div className="flex flex-row items-center gap-4">
           <img src={search} alt="" />
-          <img src={shopping} alt="" />
+         <Link to='/cart'><img src={shopping} alt="" /></Link> 
         </div>
       </div>
       <div className="flex flex-row justify-around items-center w-[100vw] pr-7">
@@ -32,7 +33,7 @@ const Hero = () => {
             <p className="text-[#747373] text-xl">Explore our unique selection of handcrafted furniture made to add elegance and coziness to any space</p>
          </div>
           
-          <button className="bg-[#343A40] text-[#F5F5F5] px-6 py-3     rounded-md">Shop Now</button>
+         <a href='#ourproducts'><button className="bg-[#343A40] text-[#F5F5F5] px-6 py-3     rounded-md">Shop Now</button></a> 
         </div>
         <div className="flex flex-row items-center flex-1 justify-center">
           <button className="bg-[#343A4099] px-4 py-3 rounded-[48px]"><img src={leftArrow} alt="" /></button>
