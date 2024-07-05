@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import leftArrow from '../icons/LeftArrow.svg';
 import rightArrow from '../icons/RightArrow.svg';
 import arrow from '../icons/BlackArrow.svg'
+
 
 const Product = ({ products, addToCart }) => {
   const { id } = useParams();

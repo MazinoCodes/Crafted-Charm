@@ -7,7 +7,7 @@ const Homepage = ({ products, addToCart }) => {
   return (
     <div className="bg-[#F5F5F5] flex flex-col gap-28  px-6">
       <Hero/>
-      <ProductList products={products} addToCart={addToCart}  />
+      <ProductList products={products} addToCart={addToCart} />
     </div>
   );
 };
