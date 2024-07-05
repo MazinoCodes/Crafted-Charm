@@ -4,10 +4,9 @@ import './Pages/ProductModal.css'
 import { useState } from 'react'
 import Homepage from './Pages/Homepage'
 import products from './Components/products';
-
-//import Cart from './Pages/Cart'
-//import Checkout from './Pages/Checkout'
-//import Product from './Pages/Product'
+import Cart from './Pages/Cart'
+import Checkout from './Pages/Checkout'
+import Product from './Pages/Product'
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -40,9 +39,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" exact element={<Homepage products={products} addToCart={addToCart} />}></Route>
-      {/*<Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />}></Route>
+      <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />}></Route>
       <Route path="/cart" element={<Cart cartItems={cart} removeFromCart={removeFromCart} />}></Route>
-      <Route path="/checkout" element={ <Checkout cartItems={cart} />}></Route>*/}
+      <Route path="/checkout" element={ <Checkout cartItems={cart} />}></Route>
     </Routes>
   )
 }

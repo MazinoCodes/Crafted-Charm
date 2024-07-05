@@ -1,14 +1,11 @@
 import search from '../icons/Search Icon.svg'
 import shopping from '../icons/Shopping Icon.svg'
 import drop from '../icons/DropDownHero.svg'
-import dropdown from '../icons/Dropdown icon.svg'
 import heroimg from '../images/HeroImage.svg'
 import arrow from '../icons/Arrow.svg'
 import leftArrow from '../icons/LeftArrow.svg'
 import rightArrow from '../icons/RightArrow.svg'
-import couch from '../icons/Couch Icon.svg'
-import tag from '../icons/Shopping tag icon.svg'
-import home from '../icons/Home icon.svg'
+
 const Hero = () => {
   return (
     <div className="flex flex-col w-[90vw] pt-8 justify-center ">
@@ -35,19 +32,13 @@ const Hero = () => {
             <p className="text-[#747373] text-xl">Explore our unique selection of handcrafted furniture made to add elegance and coziness to any space</p>
          </div>
           
-          <button className="bg-[#343A40] text-[#F5F5F5] px-4 py-3 rounded-md">Shop Now</button>
+          <button className="bg-[#343A40] text-[#F5F5F5] px-6 py-3     rounded-md">Shop Now</button>
         </div>
         <div className="flex flex-row items-center flex-1 justify-center">
           <button className="bg-[#343A4099] px-4 py-3 rounded-[48px]"><img src={leftArrow} alt="" /></button>
           <img src={heroimg} alt="" />
           <button className="bg-[#343A40] px-4 py-3 rounded-[48px] "> <img src={rightArrow} alt="" /></button>
         </div>
-      </div>
-      <div className="w-fit bg-[white] flex flex-row justify-center items-center mx-auto gap-3 px-6 py-4 rounded-[20px]">
-        <p className="flex flex-row items-center gap-2 pr-[11px] border-r-2"> <img src={home} alt="" /> Living Room <img src={dropdown} alt="" /></p>
-        <p className="flex flex-row items-center gap-2"><img src={couch} alt="" /> Couch<img src={dropdown} alt="" /></p>
-        <p className="flex flex-row items-center gap-2"> <img src={tag} alt="" /> $1000<img src={dropdown} alt="" /></p>
-        <button className="bg-[#343A40] text-[#F5F5F5] py-3 px-2 rounded-[5px]">Search</button>
       </div>
     </div>
   )
