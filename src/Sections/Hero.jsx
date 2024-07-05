@@ -1,13 +1,25 @@
 import search from '../icons/Search Icon.svg'
 import shopping from '../icons/Shopping Icon.svg'
 import drop from '../icons/DropDownHero.svg'
-import heroimg from '../images/HeroImage.svg'
+import heroimg1 from '../images/HeroImg1.svg'
+import heroimg2 from '../images/Heroimg2.svg'
+import heroimg3 from '../images/HeroImg3.svg'
 import arrow from '../icons/Arrow.svg'
 import leftArrow from '../icons/LeftArrow.svg'
 import rightArrow from '../icons/RightArrow.svg'
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
 
 const Hero = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const heroimg = [heroimg1, heroimg2, heroimg3]
+  const handleNextImage = () => {
+    setCurrentImageIndex((currentImageIndex + 1) % heroimg.length);
+  };
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((currentImageIndex - 1 + heroimg.length) % heroimg.length);
+  };
   return (
     <div className="flex flex-col w-[90vw] pt-8 justify-center ">
       <div className="flex flex-row justify-between items-center">
@@ -36,9 +48,9 @@ const Hero = () => {
          <a href='#ourproducts'><button className="bg-[#343A40] text-[#F5F5F5] px-6 py-3     rounded-md">Shop Now</button></a> 
         </div>
         <div className="flex flex-row items-center flex-1 justify-center">
-          <button className="bg-[#343A4099] px-4 py-3 rounded-[48px]"><img src={leftArrow} alt="" /></button>
-          <img src={heroimg} alt="" />
-          <button className="bg-[#343A40] px-4 py-3 rounded-[48px] "> <img src={rightArrow} alt="" /></button>
+          <button className="bg-[#343A4099] px-4 py-3 rounded-[48px]" onClick={handlePrevImage}><img src={leftArrow} alt="" /></button>
+          <img src={heroimg[currentImageIndex]} alt="" />
+          <button className="bg-[#343A40] px-4 py-3 rounded-[48px] " onClick={handleNextImage}> <img src={rightArrow} alt=""  /></button>
         </div>
       </div>
     </div>

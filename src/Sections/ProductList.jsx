@@ -1,16 +1,20 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import AddToCartNotification from '../Components/AddToCartNotification';
 import star from '../icons/Star.svg';
 import heart from '../icons/Heart.svg';
 import addCart from '../icons/CartShoppingBag.svg';
-import { Link } from 'react-router-dom';
 
 const ProductList = ({ products, addToCart }) => {
-  const [quantities, setQuantities] = useState({});
+  const [notificationItem, setNotificationItem] = useState(null);
 
   const handleAddToCart = (product) => {
-    addToCart(product, quantities[product.id] || 1);
-    setQuantities({ ...quantities, [product.id]: 1 });
+    addToCart(product);
+    setNotificationItem(product);
+    setTimeout(() => {
+      setNotificationItem(null);
+    }, 3000);
   };
 
   return (
@@ -18,7 +22,7 @@ const ProductList = ({ products, addToCart }) => {
       <h2 className='font-medium text-[32px] text-center mb-[40px]'>Our Products</h2>
       <div className='flex flex-row justify-between w-[90vw] mx-auto'>
         <div className='flex flex-row items-center justify-between gap-[30px] text-[#747373] font-semibold'>
-          <button className='text-black'>All Products</button>
+          <button className='text-black '>All Products</button>
           <button>Living Room</button>
           <button>Bathroom</button>
           <button>Kitchen</button>
@@ -41,21 +45,20 @@ const ProductList = ({ products, addToCart }) => {
                 </Link>
                 <div className='flex flex-col gap-1'>
                   <p className="font-semibold text-2xl">£{product.price.toFixed(2)}</p>
-                  <p className='text-xs font-normal flex flex-row gap-1'>
-                    <img src={star} alt="" />
-                    {product.rating}
-                    <span className='text-[#747373]'> ({product.review} Reviews) </span>
-                  </p>
+                  <p className='text-xs font-normal flex flex-row gap-1'><img src={star} alt="" />{product.rating} <span className='text-[#747373]'> ({product.review} Reviews) </span></p>
                 </div>
               </div>
               <div className='flex flex-row gap-2'>
-                <button><img src={addCart} alt="" onClick={() => handleAddToCart(product)} /></button>
-                <button><img src={heart} alt="" /></button>
+                <button onClick={() => handleAddToCart(product)}><img src={addCart} alt="" /></button>
+                <button> <img src={heart} alt="" /></button>
               </div>
             </div>
           </div>
         ))}
       </div>
+      {notificationItem && (
+        <AddToCartNotification item={notificationItem} onClose={() => setNotificationItem(null)} />
+      )}
     </div>
   );
 };
