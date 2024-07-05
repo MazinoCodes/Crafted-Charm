@@ -46,17 +46,49 @@ const ProductList = ({ products, addToCart }) => {
   const resultStart = startIndex + 1;
   const resultEnd = Math.min(endIndex, products.length);
 
+  // Filter options for dropdown
+  const filterOptions = [
+    'All Products',
+    'Living Room',
+    'Bathroom',
+    'Kitchen',
+    'Table'
+  ];
+
+  // State to manage selected filter
+  const [selectedFilter, setSelectedFilter] = useState(filterOptions[0]);
+
+  const handleFilterChange = (filter) => {
+    setSelectedFilter(filter);
+  };
+
   return (
-    <div id='ourproducts' className='flex flex-col justify-start w-full items-center gap-10 mx-auto px-4 tablet:px-6 phone:px-4'>
+    <div id='ourproducts' className='flex flex-col justify-start w-[95vw] items-center gap-10 mx-auto px-4  tablet:px-6 phone:px-4'>
       <h2 className='font-medium text-[32px] text-center'>Our Products</h2>
       <div className='flex flex-row justify-between w-full mx-auto tablet:flex-col tablet:gap-4 phone:flex-col phone:gap-4'>
-        <div className='flex flex-row items-center justify-between gap-6 text-[#747373] font-semibold tablet:flex-wrap phone:flex-wrap'>
-          <button className='text-black'>All Products</button>
-          <button>Living Room</button>
-          <button>Bathroom</button>
-          <button>Kitchen</button>
-          <button>Table</button>
-        </div>
+        {!window.innerWidth <! 768 ? (
+          <select
+            className='w-full py-2 px-3 border border-gray-300 rounded-md bg-white text-[#747373] font-semibold'
+            value={selectedFilter}
+            onChange={(e) => handleFilterChange(e.target.value)}
+          >
+            {filterOptions.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        ) : (
+          <div className='flex flex-row items-center justify-between gap-6 text-[#747373] font-semibold tablet:flex-wrap phone:flex-wrap'>
+            {filterOptions.map((option) => (
+              <button
+                key={option}
+                className={option === selectedFilter ? 'text-black' : ''}
+                onClick={() => handleFilterChange(option)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
         <select className='w-fit'>
           <option value="Price" key="1">Filter</option>
         </select>
@@ -92,12 +124,9 @@ const ProductList = ({ products, addToCart }) => {
         <AddToCartNotification item={notificationItem} onClose={() => setNotificationItem(null)} />
       )}
       <div className='flex justify-center items-center mt-4 w-full'>
-        <div className='flex flex-row  justify-center items-center'>
-        <div className='mt-2 text-[#343A40]'>
-        Result {resultStart}-{resultEnd} of {products.length}
-      </div>
+        <div className='flex'>
           <button
-            className={`px-3 py-2  mx-2 rounded-[24px] ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#343A40] text-[#343A40] '}`}
+            className={`px-3 py-1 mx-1 ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-white text-[#343A40]'}`}
             onClick={handlePrevPage}
             disabled={currentPage === 1}
           >
@@ -107,13 +136,13 @@ const ProductList = ({ products, addToCart }) => {
             <button
               key={index + 1}
               onClick={() => handlePageChange(index + 1)}
-              className={`px-4 py-2 mx-1 rounded-[24px] ${currentPage === index + 1 ? 'bg-[#343A40] text-white' : 'bg-white text-[#343A40]'}`}
+              className={`px-3 py-1 mx-1 ${currentPage === index + 1 ? 'bg-[#343A40] text-white' : 'bg-white text-[#343A40]'}`}
             >
               {index + 1}
             </button>
           ))}
           <button
-            className={`px-3 py-2  mx-2 rounded-[24px]  ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#343A40] text-[#343A40]'}`}
+            className={`px-3 py-1 mx-1 ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-white text-[#343A40]'}`}
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
           >
@@ -121,7 +150,9 @@ const ProductList = ({ products, addToCart }) => {
           </button>
         </div>
       </div>
-     
+      <div className='mt-2 text-[#343A40]'>
+        Result {resultStart}-{resultEnd} of {products.length}
+      </div>
     </div>
   );
 };

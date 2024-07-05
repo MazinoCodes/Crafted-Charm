@@ -23,14 +23,14 @@ const Hero = () => {
   };
 
   return (
-    <div className="flex flex-col w-full pt-4 justify-center mx-auto px-7 tablet:px-5 phone:px-5">
+    <div className="flex flex-col w-full pt-4 justify-center mx-auto px-7 tablet:px-5 phone:px-5 " >
       <Navbar />
       <div className="flex flex-row justify-around items-center w-full mx-auto tablet:flex-col-reverse tablet:justify-center phone:flex-col-reverse phone:justify-center">
-        <div className="flex flex-col items-start gap-8 flex-1 tablet:flex-1 tablet:w-full phone:flex-1 phone:w-full">
-          <p className="bg-[#343A40] text-[#F5F5F5] flex flex-row items-center gap-4 w-fit px-4 rounded-[20px]">
+        <div className="flex flex-col items-start gap-8 flex-1 tablet:flex-1 tablet:w-full phone:flex-1 phone:w-full phone:gap-4">
+          <p className="banner bg-[#343A40] text-[#F5F5F5] flex flex-row items-center gap-4 w-fit px-4 rounded-[20px] phone:text-sm phone:py-[5px] phone:gap-2">
             Craft your perfect home with our furniture <img src={arrow} alt="" />
           </p>
-          <div className="flex flex-col gap-4 mb-[10px] flex-1">
+          <div className="flex flex-col gap-4 mb-[10px] flex-1 phone:gap-2">
             <h1 className="text-[45px] font-semibold tablet:text-[30px] phone:text-[25px]">
               Elevate your Space with Crafted Charm Furniture Designed for Timeless Elegance
             </h1>
