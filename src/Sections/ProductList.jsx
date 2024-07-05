@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AddToCartNotification from '../Components/AddToCartNotification';
@@ -18,8 +18,8 @@ const ProductList = ({ products, addToCart }) => {
   };
 
   return (
-    <div id='ourproducts' className='flex flex-col justify-center w-[95vw] px-5 items-center gap-[60px]'>
-      <h2 className='font-medium text-[32px] text-center mb-[40px]'>Our Products</h2>
+    <div id='ourproducts' className='flex flex-col justify-start w-[100vw] items-center gap-[40px] mx-auto'>
+      <h2 className='font-medium text-[32px] text-center '>Our Products</h2>
       <div className='flex flex-row justify-between w-[90vw] mx-auto'>
         <div className='flex flex-row items-center justify-between gap-[30px] text-[#747373] font-semibold'>
           <button className='text-black '>All Products</button>
@@ -36,7 +36,7 @@ const ProductList = ({ products, addToCart }) => {
         {products.map(product => (
           <div key={product.id} className="bg-white w-fit rounded-xl">
             <Link to={`/product/${product.id}`}>
-              <img src={product.pic} alt={product.name} className="w-[35vw] mb-2 rounded-t-xl" />
+              <img src={product.pic} alt={product.name} className="w-[30vw] mb-2 rounded-t-xl" />
             </Link>
             <div className='flex flex-row items-center justify-between px-3 py-4'>
               <div className='flex flex-col gap-4'>
