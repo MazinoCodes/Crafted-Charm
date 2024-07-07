@@ -24,7 +24,7 @@ const Hero = () => {
       <Navbar />
       <div className="flex flex-row justify-around items-center w-full mx-auto tablet:flex-col tablet:justify-center phone:flex-col phone:justify-center gaps">
         <div className="flex flex-col items-start gap-8 flex-1 tablet:flex-1 tablet:w-full phone:flex-1 phone:w-full phone:gap-4 tablet:items-center tablet:text-center phone:text-center phone:items-center">
-          <p className="banner bg-white text-[#F5F5F5] flex flex-row items-center gap-4 w-fit px-4 rounded-[20px] phone:text-sm phone:py-[5px] phone:gap-2">
+          <p className="banner bg-white text-[#343A40] flex flex-row items-center gap-4 w-fit px-4 rounded-[20px] phone:text-sm phone:py-[5px] phone:gap-2">
             Craft your perfect home with our furniture <img src={arrow} alt="" />
           </p>
           <div className="flex flex-col gap-4 mb-[10px] flex-1 phone:gap-2 ">

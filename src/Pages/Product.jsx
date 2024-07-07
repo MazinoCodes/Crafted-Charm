@@ -44,7 +44,7 @@ const Product = ({ products, addToCart }) => {
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handlePrevImage}>
               <img src={leftArrow} alt="Previous" />
             </button>
-            <img src={product.opic[currentImageIndex]} alt={product.name} className="w-[500px] h-[240px]  md:w-[230px] p:h-[240px] rounded-[5%] phone:w-[230px]" />
+            <img src={product.opic[currentImageIndex]} alt={product.name} className="w-[500px] h-[240px]  md:w-[600px]  rounded-[5%] phone:w-[230px]" />
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handleNextImage}>
               <img src={rightArrow} alt="Next" />
             </button>
