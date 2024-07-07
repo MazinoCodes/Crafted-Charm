@@ -7,7 +7,7 @@ import tw from '../icons/Twitter.svg'
 const Footer = () => {
   return (
     <div className='bg-[#343A40] w-100vw flex flex-col items-center mt-24 pt-8 gap-10'>
-      <div className='flex flex-row items-center justify-between w-[90vw] text-white'>
+      <div className='flex flex-row items-center justify-between w-[90vw] text-white phone:flex-col phone:gap-10'>
             <div className='flex flex-col gap-5'>
                 <div className='flex flex-col gap-3'>
                 <p className='text-2xl'>Crafted Charm</p>
@@ -36,8 +36,8 @@ const Footer = () => {
                    
                 </div>
             </div>
-            <div className='flex flex-col items-center'>
-                <h4 className=''>Join Us</h4>
+            <div className='flex flex-col items-center gap-4'>
+                <h4 className='phone:text-xl'>Join Us</h4>
                 <div className='flex flex-row items-center gap-2'>
                     <Link to=''><img src={fb} alt="" /></Link>
                     <Link to=''><img src={ig} alt="" /></Link>

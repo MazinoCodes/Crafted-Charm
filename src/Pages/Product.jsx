@@ -5,6 +5,7 @@ import leftArrow from '../icons/LeftArrow.svg';
 import rightArrow from '../icons/RightArrow.svg';
 import arrow from '../icons/BlackArrow.svg';
 import AddToCartNotification from '../Components/AddToCartNotification';
+import Navbar from '../Components/Navbar';
 
 const Product = ({ products, addToCart }) => {
   const { id } = useParams();
@@ -33,47 +34,46 @@ const Product = ({ products, addToCart }) => {
   };
 
   return (
-    <div className='bg-[#F5F5F5] w-full min-h-screen flex flex-col justify-start pt-5 px-10 overflow-x-hidden gap-12'>
-      <Link to="/" className="top-5 absolute rotate-180">
-        <img src={arrow} alt="Back" />
-      </Link>
-      <h1 className='text-center font-medium text-2xl'>Product Page</h1>
-      <div className='flex flex-col md:flex-row items-center justify-center gap-12'>
+    <div className='bg-[#F5F5F5] w-full min-h-screen flex flex-col justify-start pt-5 px-4 md:px-10 overflow-x-hidden gap-6 md:gap-12 phone:gap-20'>
+      <Navbar/>
+      
+      <h1 className='text-center font-medium text-2xl md:text-3xl'>Product Page</h1>
+      <div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12'>
         <div className='flex flex-col items-center gap-3'>
           <div className="flex items-center gap-3">
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handlePrevImage}>
               <img src={leftArrow} alt="Previous" />
             </button>
-            <img src={product.opic[currentImageIndex]} alt={product.name} className="w-[500px] h-[400px] rounded-[5%]" />
+            <img src={product.opic[currentImageIndex]} alt={product.name} className="w-[500px] h-[240px]  md:w-[230px] p:h-[240px] rounded-[5%] phone:w-[230px]" />
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handleNextImage}>
               <img src={rightArrow} alt="Next" />
             </button>
           </div>
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-row gap-2 md:gap-3">
             {product.opic.map((pic, index) => (
               <img
                 key={index}
                 src={pic}
                 alt={`${product.name} ${index + 1}`}
-                className={`w-20 h-20 cursor-pointer border-2 border-[#343A40] ${index === currentImageIndex ? 'border-yellow-600' : ''}`}
+                className={`w-16 h-16 md:w-20 md:h-20 cursor-pointer border border-[#343A40] ${index === currentImageIndex ? 'border-yellow-600' : ''}`}
                 onClick={() => setCurrentImageIndex(index)}
               />
             ))}
           </div>
         </div>
 
-        <div className="flex-[0.7] px-9 flex flex-col items-start gap-6">
-          <h2 className="text-4xl font-semibold">{product.name}</h2>
-          <span className='font-semibold text-2xl text-black'>£{product.price.toFixed(2)}</span>
-          <p className='text-[#747373] text-md'>{product.description}</p>
-          <div className='flex flex-row gap-4'>
-            <div className='w-[45px] h-[45px] rounded-[60px] bg-[#2A2D30]'></div>
-            <div className='w-[45px] h-[45px] rounded-[60px] bg-[#234566]'></div>
-            <div className='w-[45px] h-[45px] rounded-[60px] bg-[#C6CFD7]'></div>
-            <div className='w-[45px] h-[45px] rounded-[60px] bg-[#BBB1A7]'></div>
-            <div className='w-[45px] h-[45px] rounded-[60px] bg-[#82572C]'></div>
-            <div className='w-[45px] h-[45px] rounded-[60px] bg-[#82572C]'></div>
-            <div className='w-[45px] h-[45px] rounded-[60px] bg-[#82572C]'></div>
+        <div className="flex-[0.7] px-4 md:px-9 flex flex-col items-start gap-6 ">
+          <h2 className="text-2xl md:text-4xl font-semibold">{product.name}</h2>
+          <span className='font-semibold text-xl md:text-2xl text-black'>£{product.price.toFixed(2)}</span>
+          <p className='text-[#747373] text-sm md:text-md'>{product.description}</p>
+          <div className='flex flex-row gap-2 md:gap-4'>
+            <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#2A2D30]'></div>
+            <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#234566]'></div>
+            <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#C6CFD7]'></div>
+            <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#BBB1A7]'></div>
+            <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#82572C]'></div>
+            <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#82572C]'></div>
+            <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#82572C]'></div>
           </div>
           <div className='flex flex-col justify-between items-center w-full gap-2'>
             <button className="w-full bg-[#343A40] text-white text-sm py-2 px-3 rounded" onClick={handleAddToCart}>

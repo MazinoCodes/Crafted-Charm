@@ -29,7 +29,8 @@ const Navbar = () => {
       <nav className={`navbar body-font ${isOpen ? 'active' : ''}`}>
         <ul>
           <li className=' hover:text-[#343A40] hover:font-semibold'><Link to='/'>Home</Link></li>
-          <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to='/ourproducts'> Product</Link></li>
+          <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to="/#ourproducts">Product</Link>
+          </li>
           <li className=' hover:text-[#343A40] hover:font-semibold'><Link to='/contact'>Contact Us</Link></li>
         </ul>
         <ul className="icons">
