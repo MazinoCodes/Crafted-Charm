@@ -1,7 +1,7 @@
 import heroimg1 from '../images/HeroImg1.svg';
 import heroimg2 from '../images/Heroimg2.svg';
 import heroimg3 from '../images/HeroImg3.svg';
-import arrow from '../icons/Arrow.svg';
+import arrow from '../icons/BlackArrow.svg';
 import leftArrow from '../icons/LeftArrow.svg';
 import rightArrow from '../icons/RightArrow.svg';
 import { useState } from 'react';
