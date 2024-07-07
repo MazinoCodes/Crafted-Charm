@@ -20,18 +20,18 @@ const Hero = () => {
   };
 
   return (
-    <div className="flex flex-col w-full pt-4 justify-center mx-auto px-7 tablet:px-5 phone:px-5  phone:gap-14 bg-[#F5F5F5] " >
+    <div className="flex flex-col w-full pt-4 justify-center mx-auto px-7 tablet:px-5 phone:px-5  phone:gap-14 bg-[#F5F5F5] s " >
       <Navbar />
       <div className="flex flex-row justify-around items-center w-full mx-auto tablet:flex-col tablet:justify-center phone:flex-col phone:justify-center gaps">
         <div className="flex flex-col items-start gap-8 flex-1 tablet:flex-1 tablet:w-full phone:flex-1 phone:w-full phone:gap-4 tablet:items-center tablet:text-center phone:text-center phone:items-center">
           <p className="banner bg-white text-[#343A40] flex flex-row items-center gap-4 w-fit px-4 rounded-[20px] phone:text-sm phone:py-[5px] phone:gap-2">
             Craft your perfect home with our furniture <img src={arrow} alt="" />
           </p>
-          <div className="flex flex-col gap-4 mb-[10px] flex-1 phone:gap-2 ">
-            <h1 className="text-[45px] font-semibold tablet:text-[30px] phone:text-[25px] text-[#343A40] ">
+          <div className="flex flex-col gap-4 mb-[10px] flex-1 phone:gap-8 ">
+            <h1 className="text-[45px] font-semibold tablet:text-[30px] phone:text-[30px] text-[#343A40] ">
               Elevate your Space with  Crafted Charm Furniture Designed for Timeless Elegance
             </h1>
-            <p className="text-[#747373] text-xl tablet:text-lg phone:text-base">
+            <p className="text-[#747373] text-xl tablet:text-lg phone:text-lg">
               Explore our unique selection of handcrafted furniture made to add elegance and coziness to any space
             </p>
           </div>
@@ -51,21 +51,21 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <div className="w-fit bg-[white] flex flex-row justify-between items-center mx-auto gap-10 px-10 py-3 rounded-[20px] mb-20 phone:px-5 phone:gap-6">
+      <div className="w-fit bg-[white] flex flex-row justify-between items-center mx-auto gap-10 px-10 py-3 rounded-[10px] mb-20 phone:px-5 phone:gap-6 phone:w-[90vw]">
         <p className="flex flex-col items-center  "> 
-            <span className='text-2xl font-semibold phone:text-xl'>10k</span>
-            <span className='text-lg font-normal'>Customers</span>
+            <span className='text-2xl font-semibold phone:text-2xl'>10k</span>
+            <span className='text-lg font-normal phone:text-base'>Customers</span>
         </p>
       <img src={line} alt="" />
         <p className="flex flex-col items-center   "> 
-          <span className='text-2xl font-semibold phone:text-xl'>20k</span>
-          <span className='text-lg font-normal'>Sold</span>
+          <span className='text-2xl font-semibold phone:text-2xl'>20k</span>
+          <span className='text-lg font-normal phone:text-base'>Sold</span>
         </p>
         <img src={line} alt="" />
 
         <p className="flex flex-col items-center"> 
-          <span className='text-2xl font-semibold phone:text-xl'>300</span>
-          <span className='text-lg font-normal'>Outlets</span>
+          <span className='text-2xl font-semibold phone:text-2xl'>300</span>
+          <span className='text-lg font-normal phone:text-base'>Outlets</span>
         </p>
       </div>
     </div>

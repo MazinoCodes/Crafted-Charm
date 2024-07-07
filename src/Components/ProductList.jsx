@@ -8,7 +8,6 @@ import heartFilled from '../icons/heart-filled.svg';
 import addCart from '../icons/CartShoppingBag.svg';
 import leftArrow from '../icons/LeftArrow.svg';
 import rightArrow from '../icons/RightArrow.svg';
-import Navbar from './Navbar';
 
 const ProductList = ({ products, addToCart }) => {
   const [notificationItem, setNotificationItem] = useState(null);
@@ -80,7 +79,7 @@ const ProductList = ({ products, addToCart }) => {
   };
 
   return (
-    <div id='ourproducts' className='flex flex-col  w-[95vw]  gap-10 mx-auto  tablet:px-6 phone:px-4 pt-5 '>
+    <div id='ourproducts' className='flex flex-col  w-[95vw]  gap-10 mx-auto  tablet:px-6 phone:px-4 pt-5 bg-white'>
       <div className='flex flex-col items-center justify-start gap-9'>
       <h2 className='font-medium text-[32px] text-center'>Our Products</h2>
       <div className='flex flex-row justify-between w-full mx-auto tablet:flex-col tablet:gap-4 phone:flex-col phone:gap-4'>
@@ -113,7 +112,7 @@ const ProductList = ({ products, addToCart }) => {
       </div>
       <div className={`grid grid-cols-3 gap-7 tablet:grid-cols-2 phone:grid-cols-1 ${currentPage === 1 ? 'grid-cols-3' : ''}`}>
         {displayedProducts.map(product => (
-          <div key={product.id} className="bg-white w-full rounded-xl tablet:w-full phone:w-full">
+          <div key={product.id} className="bg-[#fdfdfd] w-full rounded-xl tablet:w-full phone:w-full border-[#F5F5F5] border">
             <Link to={`/product/${product.id}`}>
               <img src={product.pic} alt={product.name} className="w-full mb-2 rounded-t-xl" />
             </Link>
@@ -124,8 +123,9 @@ const ProductList = ({ products, addToCart }) => {
                 </Link>
                 <div className='flex flex-col gap-1'>
                   <p className="font-semibold text-2xl">£{product.price.toFixed(2)}</p>
-                  <p className='text-xs font-normal flex flex-row gap-1'>
-                    <img src={star} alt="" />{product.rating} 
+                  <p className='text-xs font-normal flex flex-row gap-1 items-center'>
+                    <img src={star} alt="" />
+                    <span>{product.rating} </span>
                     <span className='text-[#747373]'> ({product.review} Reviews) </span>
                   </p>
                 </div>

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.fontS{
+    font-family:  'Segoe UI' !important;
+    font-weight: 700 !important;
+}
