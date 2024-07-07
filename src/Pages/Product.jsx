@@ -44,7 +44,7 @@ const Product = ({ products, addToCart }) => {
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handlePrevImage}>
               <img src={leftArrow} alt="Previous" />
             </button>
-            <img src={product.opic[currentImageIndex]} alt={product.name} className="w-[500px] h-[240px]  md:w-[600px]  rounded-[5%] phone:w-[230px]" />
+            <img src={product.opic[currentImageIndex]} alt={product.name} className="w-[500px] h-[240px]  md:w-[500px]  rounded-[5%] phone:w-[230px]" />
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handleNextImage}>
               <img src={rightArrow} alt="Next" />
             </button>
@@ -62,10 +62,10 @@ const Product = ({ products, addToCart }) => {
           </div>
         </div>
 
-        <div className="flex-[0.7] px-4 md:px-9 flex flex-col items-start gap-6 ">
-          <h2 className="text-2xl md:text-4xl font-semibold">{product.name}</h2>
-          <span className='font-semibold text-xl md:text-2xl text-black'>£{product.price.toFixed(2)}</span>
-          <p className='text-[#747373] text-sm md:text-md'>{product.description}</p>
+        <div className="flex-[0.7] px-4 md:px-9 flex flex-col items-start gap-6 phone:gap-10">
+          <h2 className="text-3xl md:text-4xl font-semibold">{product.name}</h2>
+          <span className='font-semibold text-2xl text-black'>£{product.price.toFixed(2)}</span>
+          <p className='text-[#747373]  md:text-md'>{product.description}</p>
           <div className='flex flex-row gap-2 md:gap-4'>
             <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#2A2D30]'></div>
             <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#234566]'></div>
@@ -75,7 +75,7 @@ const Product = ({ products, addToCart }) => {
             <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#82572C]'></div>
             <div className='w-[35px] h-[35px] md:w-[45px] md:h-[45px] rounded-full bg-[#82572C]'></div>
           </div>
-          <div className='flex flex-col justify-between items-center w-full gap-2'>
+          <div className='flex flex-col justify-between items-center w-full gap-2  phone:pb-9'>
             <button className="w-full bg-[#343A40] text-white text-sm py-2 px-3 rounded" onClick={handleAddToCart}>
               Add to Cart
             </button>
