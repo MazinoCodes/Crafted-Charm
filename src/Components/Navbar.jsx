@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import './Navbar.css';
 import search from '../icons/Search Icon.svg';
 import shopping from '../icons/Shopping Icon.svg';
 import searchW from '../icons/SearchW.svg';
@@ -29,9 +28,9 @@ const Navbar = () => {
       
       <nav className={`navbar body-font ${isOpen ? 'active' : ''}`}>
         <ul>
-          <li><a href="#" className="text-[#343A40] font-semibold">Home</a></li>
-          <li><a href="#ourproducts">Product</a></li>
-          <li><a href="#contactus">Contact Us</a></li>
+          <li className=' hover:text-[#343A40] hover:font-semibold'><Link to='/'>Home</Link></li>
+          <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to='/ourproducts'> Product</Link></li>
+          <li className=' hover:text-[#343A40] hover:font-semibold'><Link to='/contact'>Contact Us</Link></li>
         </ul>
         <ul className="icons">
           {!isOpen && isDesktop ? (

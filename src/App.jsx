@@ -1,12 +1,12 @@
-import {Route, Routes} from 'react-router-dom'
-import './App.css'
-import './Pages/ProductModal.css'
-import { useState } from 'react'
-import Homepage from './Pages/Homepage'
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import { useState } from 'react';
 import products from './Components/products';
-import Cart from './Pages/Cart'
-import Checkout from './Pages/Checkout'
-import Product from './Pages/Product'
+import Cart from './Pages/Cart'; // Ensure this is correctly imported
+import Checkout from './Pages/Checkout';
+import Product from './Pages/Product';
+import FavoriteProductList from './Components/FavoriteProductList';
+import Homepage from './Pages/Homepage';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -24,26 +24,32 @@ function App() {
     }
   };
 
-  const removeFromCart = (productToRemove) => {
-    const existingProduct = cart.find(item => item.id === productToRemove.id);
+  const removeFromCart = (product) => {
+    const existingProduct = cart.find(item => item.id === product.id);
     if (existingProduct.quantity > 1) {
       setCart(cart.map(item =>
-        item.id === productToRemove.id
+        item.id === product.id
           ? { ...item, quantity: item.quantity - 1 }
           : item
       ));
     } else {
-      setCart(cart.filter(item => item.id !== productToRemove.id));
+      setCart(cart.filter(item => item.id !== product.id));
     }
   };
+
+  const removeItemFromCart = (product) => {
+    setCart(cart.filter(item => item.id !== product.id));
+  };
+
   return (
     <Routes>
-      <Route path="/" exact element={<Homepage products={products} addToCart={addToCart} />}></Route>
-      <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />}></Route>
-      <Route path="/cart" element={<Cart cartItems={cart} removeFromCart={removeFromCart} />}></Route>
-      <Route path="/checkout" element={ <Checkout cartItems={cart} />}></Route>
+      <Route path="/" exact element={<Homepage   products={products} addToCart={addToCart} />} />
+      <Route path="/cart" exact element={<Cart cartItems={cart} removeFromCart={removeFromCart} addToCart={addToCart} removeItemFromCart={removeItemFromCart} />} /> 
+      <Route path="/checkout" exact element={<Checkout cartItems={cart} />} />
+      <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />} />
+      <Route path="/favorites" exact element={<FavoriteProductList products={products} addToCart={addToCart} />} />
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;
