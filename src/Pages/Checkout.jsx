@@ -250,7 +250,7 @@ const handlePaymentMethodChange = (method) => {
           Previous
         </button>: <></>}
         <button
-       className={`w-full  ${currentStep >= 2 ? 'bg-[#343A40] w-[50%] tablet:[50%]' : 'bg-[#343A40]'} text-sm text-center py-2 rounded-md text-[#F5F5F5]`}  onClick={handleNextStep}>
+       className={`w-full  ${currentStep >= 2 ? 'bg-[#343A40] w-[50%] tablet:[50%] phone:w-[49%]' : 'bg-[#343A40]'} text-sm text-center py-2 rounded-md text-[#F5F5F5]`}  onClick={handleNextStep}>
 
             {currentStep === 3 ? <Link to='/payment'>Confirm Purchase</Link> : 'Next'}
          

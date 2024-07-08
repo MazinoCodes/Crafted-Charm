@@ -16,7 +16,7 @@ const ProductList = ({ products, addToCart }) => {
   const [selectedFilter, setSelectedFilter] = useState('All Products');
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortBy, setSortBy] = useState('Filter'); 
-  const itemsPerPage = 6;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -30,7 +30,7 @@ const ProductList = ({ products, addToCart }) => {
       const filtered = products.filter(product => product.category === selectedFilter);
       setFilteredProducts(filtered);
     }
-    setCurrentPage(1); // Reset to first page when filter changes
+    setCurrentPage(1);
   }, [selectedFilter, products]);
 
   useEffect(() => {
@@ -98,9 +98,9 @@ const ProductList = ({ products, addToCart }) => {
   const filterOptions = [
     'All Products',
     'Living Room',
-    'Bathroom',
     'Bedroom',
-    'Study'
+    'Kitchen',
+    'Dining'
   ];
 
   const sortOptions = [

@@ -39,7 +39,8 @@ const Navbar = () => {
   };
   return (
     <div className="nav">
-      <div className="logo font-semibold text-xl tablet:text-xl phone:text-l">Crafted Charm</div>
+      <div className="logo font-semibold text-xl tablet:text-xl phone:text-l">
+        <Link to='/'>Crafted Charm</Link></div>
       
       <nav className={`navbar body-font ${isOpen ? 'active' : ''}`}>
         <ul>
