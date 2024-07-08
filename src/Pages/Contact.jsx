@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 const Contact = () => {
   return (
-    <div className='flex flex-col w-full items-center gap-10 mb-20 px-4 md:px-10'>
+    <div className='flex flex-col w-full items-center gap-10 mb-20 px-4 md:px-10' id='contactus'>
       <h1 className='text-3xl font-semibold text-center'>Contact Us</h1>
       <div className='flex flex-col md:flex-row justify-between w-[90vw] gap-20'>
         <div className='flex flex-col items-start gap-6 flex-[2] w-full md:w-auto'>

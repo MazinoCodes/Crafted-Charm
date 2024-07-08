@@ -6,10 +6,10 @@ import app from '../icons/Apple.svg'
 import paypal from '../icons/Paypal.svg'
 import visa from '../icons/Visa.svg'
 import Navbar from '../Components/Navbar';
+import StepProgress from '../Components/StepProgress';
 const Checkout = ({ cartItems, clearCart }) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [paymentMethod, setPaymentMethod] = useState('');
-
+  const [selectedMethod, setSelectedMethod] = useState('');
   const [userDetails, setUserDetails] = useState({
     name: '',
     email: '',
@@ -29,11 +29,10 @@ const Checkout = ({ cartItems, clearCart }) => {
   const handleNextStep = () => {
     if (currentStep < 3) {
       setCurrentStep(currentStep + 1);
-    } else {
-      clearCart();
-      localStorage.removeItem('cart');
-      alert('Purchase confirmed! Your cart has been cleared.');
     }
+     
+    
+  
   };
 
   const handlePrevStep = () => {
@@ -42,34 +41,12 @@ const Checkout = ({ cartItems, clearCart }) => {
     }
   };
 
-  const handlePaymentMethod = (method) => {
-    setPaymentMethod(method);
+const handlePaymentMethodChange = (method) => {
+    setSelectedMethod(method);
+    localStorage.setItem('paymentMethod', method);
+    setCurrentStep(3);
   };
-  const StepProgress = ({ step }) => {
-    return (
-      <div>
-          <div className="flex justify-center items-center mb-6 w-[40vw] phone:w-[80vw] tablet:w-[80vw] tablet:ml-24 phone:ml-16 ml-20 ">
-        <div className="flex items-center w-[90vw] h-2 px-2 step-line phone:w-[80vw]">
-          {[1, 2, 3].map((s) => (
-            <div key={s} className="flex items-center w-full">
-              <div className={`rounded-full h-10 w-10 flex items-center justify-center z-10 ${step >= s ? 'bg-[#343A40] text-white' : 'bg-[#d1d5db] text-gray-600'}`}>
-                {s}
-              </div>
-              {s < 3 && <div className={`h-2 flex-1 ${step > s ? 'bg-[#343A40]' : 'bg-gray-300'}`}></div>}
-             
-            </div>
-          ))}
-        </div>
-      </div>
-      
-        <div className='flex flex-row gap-10  pl-16 font-semibold phone:pr-10 phone:gap-0'>
-          <p className='  phone:text-center'>User Details</p>
-          <p className='ml-8 phone:ml-7 phone:text-center'>Delivery Details</p>
-          <p className='ml-12 phone:mr-5'>Payment</p>
-        </div>
-      </div>
-    );
-  };
+
 
   if (!cartItems.length) {
     return <h2>Your cart is empty</h2>;
@@ -201,39 +178,61 @@ const Checkout = ({ cartItems, clearCart }) => {
           <div className='flex flex-col w-[40vw] gap-4 tablet:w-[70vw] phone:w-[90vw]'>
             <div className='flex flex-col items-center w-full gap-12'>
               <label className='text-center font-semibold text-3xl'>Payment Method</label>
-              <div className='flex flex-row items-center justify-between gap-10 phone:gap-2'>
-                <button onClick={() => handlePaymentMethod('paypal')}>
-          <img
-            src={paypal}
-            alt="Paypal"
-            className="border-[#343A40] border rounded-[10px] px-[20px] py-[20px] phone:w-20"
-          />
-        </button>
-        {/* Mastercard Button */}
-        <button onClick={() => handlePaymentMethod('mastercard')}>
-          <img
-            src={mc}
-            alt="Mastercard"
-            className="border-[#343A40] border rounded-[10px] px-[20px] py-[30px] phone:w-20 phone:py-[28px]"
-          />
-        </button>
-        {/* Visa Button */}
-        <button onClick={() => handlePaymentMethod('visa')}>
-          <img
-            src={visa}
-            alt="Visa"
-            className="border-[#343A40] border rounded-[10px] px-[20px] py-[40px] phone:w-20 phone:py-[33px]"
-          />
-        </button>
-        {/* Apple Pay Button */}
-        <button onClick={() => handlePaymentMethod('apple')}>
-          <img
-            src={app}
-            alt="Apple Pay"
-            className="border-[#343A40] border rounded-[10px] px-[25px] py-[20px] phone:w-20 phone:py-[23px]"
-          />
-        </button>
-      </div>
+              <div className='flex flex-row items-center justify-between gap-10 phone:gap-2 payment-methods'>
+              <label className="payment-method">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="paypal"
+                  checked={selectedMethod === 'paypal'}
+                  onChange={() => handlePaymentMethodChange('paypal')}
+                />
+                <img
+                  src={paypal}
+                  alt="Paypal"
+                  className="border-[#343A40] border rounded-[10px] px-[25px] py-[20px] phone:w-20 phone:py-[23px]"                />
+              </label>
+              <label className="payment-method">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="mastercard"
+                  checked={selectedMethod === 'mastercard'}
+                  onChange={() => handlePaymentMethodChange('mastercard')}
+                />
+                <img
+                  src={mc}
+                  alt="Mastercard"
+                  className="border-[#343A40] border rounded-[10px] px-[25px] py-[20px] phone:w-20 phone:py-[23px]"                />
+              </label>
+              <label className="payment-method">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="visa"
+                  checked={selectedMethod === 'visa'}
+                  onChange={() => handlePaymentMethodChange('visa')}
+                />
+                <img
+                  src={visa}
+                  alt="Visa"
+                  className="border-[#343A40] border rounded-[10px] px-[25px] py-[20px] phone:w-20 phone:py-[23px]"                />
+              </label>
+              <label className="payment-method">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="apple"
+                  checked={selectedMethod === 'apple'}
+                  onChange={() => handlePaymentMethodChange('apple')}
+                />
+                <img
+                  src={app}
+                  alt="Apple Pay"
+                  className="border-[#343A40] border rounded-[10px] px-[25px] py-[20px] phone:w-20 phone:py-[23px]"
+                />
+              </label>
+            </div>
             </div>
           </div>
         </div>

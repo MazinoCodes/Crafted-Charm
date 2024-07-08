@@ -60,7 +60,6 @@ body{
     z-index: 0;
   }
   
-  
   .nav {
     padding: 10px 25px 10px 0px;
     display: flex;
@@ -68,16 +67,37 @@ body{
     align-items: center;
     z-index: 1;
   }
-  
+  input[type=checkbox]:checked {
+    accent-color: black;
+   
+  }
   .logo {
     flex: 0.7;
+  }
+  
+  .menu-icons {
+    display: flex;
+    align-items: center;
+    z-index: 100;
   }
   
   .menu-icon {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    z-index: 1;
+    z-index: 100;
+  }
+  
+  .menu-icon .bar {
+    width: 30px;
+    height: 3px;
+    background-color: #343A40;
+    margin: 3px 0;
+    z-index: 100;
+  }
+  
+  .mobile-cart-icon {
+    display: none;
   }
   
   .navbar {
@@ -85,15 +105,8 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center; /* Align items centrally */
-  }
-  
-  .bar {
-    width: 30px;
-    height: 3px;
-    background-color: #343A40;
-    margin: 3px 0;
-    z-index: 1;
+    align-items: center;
+    z-index: 100;
   }
   
   .navbar ul {
@@ -102,12 +115,12 @@ body{
     z-index: 1;
     display: flex;
     flex-direction: row;
-    align-items: center; /* Align items centrally */
+    align-items: center;
   }
   
   .navbar li {
     margin-right: 20px;
-    z-index: 1;
+    z-index: 100;
   }
   
   .navbar a {
@@ -117,29 +130,26 @@ body{
     z-index: 1;
   }
   
-  .navbar a:hover {
-    color: #343A40;
-    z-index: 1;
-  }
+  
   
   @media (max-width: 1024px) {
+    .nav {
+      padding: 5px 15px;
+    }
     .navbar a {
       text-decoration: none;
       color: white;
       transition: color 0.3s;
       z-index: 1;
     }
-    .step-line::before{
-        width: 60px;
-        left: -50px;
-    }
-    .nav {
-      padding: 5px 15px;
-    }
-  
     .menu-icon {
       display: flex;
-      z-index: 1;
+      z-index: 100;
+    }
+  
+    .mobile-cart-icon {
+      display: block;
+      margin-left: 10px;
     }
   
     .navbar {
@@ -151,50 +161,96 @@ body{
       right: 0;
       padding: 30px 0;
       text-align: center;
-      z-index: 1;
+      z-index: 100;
       color: white;
     }
   
     .navbar.active {
       display: block;
-      z-index: 1;
+      z-index: 100;
     }
   
     .navbar ul {
       flex-direction: column;
       padding: 0;
-      z-index: 1;
-      align-items: center; /* Center items in column */
+      z-index: 100;
+      align-items: center;
     }
   
     .navbar li {
       margin: 10px 0;
-      z-index: 1;
+      z-index: 100;
     }
   
     .icons li {
       display: flex;
       align-items: center;
       gap: 8px;
-      z-index: 1;
+      z-index: 100;
     }
   
     .icons li span {
       display: inline;
-      z-index: 1;
-    }
-    .gaps{
-      margin-top: 50px !important;
+      z-index: 100;
     }
   }
   
-@media (max-width:400px) {
-    .banner{
-        font-size: 11pt !important;
-        padding: 5px 7px 5px 7px !important;
-        gap: 5px !important;
-    } 
-    .gaps{
+  @media (max-width: 400px) {
+    .banner {
+      font-size: 11pt !important;
+      padding: 5px 7px 5px 7px !important;
+      gap: 5px !important;
+    }
+    .gaps {
       margin-top: -20px !important;
-  } 
+    }
+  }
+  /* General styles for StepProgress */
+.step-line {
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .step-line::before {
+    width: 60px;
+    left: -50px;
+  }
+
+  .gaps {
+    margin-top: 50px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .banner {
+    font-size: 11pt !important;
+    padding: 5px 7px 5px 7px !important;
+    gap: 5px !important;
+  }
+  
+  .gaps {
+    margin-top: -20px !important;
+  }
+}
+.payment-method {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  border: 1px solid #343A40;
+  border-radius: 10px;
+}
+
+.payment-method input[type="radio"] {
+  display: none;
+}
+
+.payment-method img {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.payment-method input[type="radio"]:checked + img {
+  border-color: #343A40;
 }

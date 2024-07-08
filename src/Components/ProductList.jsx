@@ -79,7 +79,7 @@ const ProductList = ({ products, addToCart }) => {
   };
 
   return (
-    <div id='ourproducts' className='flex flex-col  w-[95vw]  gap-10 mx-auto  tablet:px-6 phone:px-4 pt-5 bg-white'>
+    <div  id='ourproducts' className='flex flex-col  w-[95vw]  gap-10 mx-auto  tablet:px-6 phone:px-4 pt-5 bg-white'>
       <div className='flex flex-col items-center justify-start gap-9'>
       <h2 className='font-medium text-[32px] text-center'>Our Products</h2>
       <div className='flex flex-row justify-between w-full mx-auto tablet:flex-col tablet:gap-4 phone:flex-col phone:gap-4'>
