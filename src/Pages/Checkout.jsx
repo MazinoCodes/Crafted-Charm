@@ -202,13 +202,14 @@ const Checkout = ({ cartItems, clearCart }) => {
             <div className='flex flex-col items-center w-full gap-12'>
               <label className='text-center font-semibold text-3xl'>Payment Method</label>
               <div className='flex flex-row items-center justify-between gap-10 phone:gap-2'>
-              <button onClick={() => handlePaymentMethod('paypal')}>
+                <button onClick={() => handlePaymentMethod('paypal')}>
           <img
             src={paypal}
             alt="Paypal"
             className="border-[#343A40] border rounded-[10px] px-[20px] py-[20px] phone:w-20"
           />
         </button>
+        {/* Mastercard Button */}
         <button onClick={() => handlePaymentMethod('mastercard')}>
           <img
             src={mc}
@@ -216,6 +217,7 @@ const Checkout = ({ cartItems, clearCart }) => {
             className="border-[#343A40] border rounded-[10px] px-[20px] py-[30px] phone:w-20 phone:py-[28px]"
           />
         </button>
+        {/* Visa Button */}
         <button onClick={() => handlePaymentMethod('visa')}>
           <img
             src={visa}
@@ -223,6 +225,7 @@ const Checkout = ({ cartItems, clearCart }) => {
             className="border-[#343A40] border rounded-[10px] px-[20px] py-[40px] phone:w-20 phone:py-[33px]"
           />
         </button>
+        {/* Apple Pay Button */}
         <button onClick={() => handlePaymentMethod('apple')}>
           <img
             src={app}
@@ -237,7 +240,7 @@ const Checkout = ({ cartItems, clearCart }) => {
       )}
       <div className='flex flex-col justify-between mt-4 w-[40vw] items-center phone:px-5 phone:w-[100vw] tablet:w-[50vw] gap-4'>
 
-        <div className='flex flex-row w-[40vw] gap-2'>
+        <div className='flex flex-row w-[40vw] gap-2 phone:w-[90vw] tablet:w-[70vw]'>
 
        
        { currentStep >= 2 ? <button
