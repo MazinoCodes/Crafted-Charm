@@ -9,7 +9,7 @@ import Navbar from '../Components/Navbar';
 const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
   if (!cartItems.length) {
     return (
-      <div className='w-full h-screen flex items-center justify-center flex-col'>
+      <div className='w-full h-screen flex items-center justify-center flex-col gap-6'>
         <h2 className='text-2xl'>Your Cart is empty</h2>
         <Link to="/#ourproducts">
           <button className="bg-[#343A40] text-white text-sm py-2 px-3 rounded flex flex-row items-center gap-2">

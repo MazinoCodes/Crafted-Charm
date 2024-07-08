@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import search from '../icons/Search Icon.svg';
+import Heart from '../icons/Heart.svg';
 import shopping from '../icons/Shopping Icon.svg';
-import searchW from '../icons/SearchW.svg';
+import HeartW from '../icons/HeartW.svg';
 import shoppingW from '../icons/ShoppingW.svg';
 import { useNavigate, useLocation } from 'react-router-dom';
 const Navbar = () => {
@@ -52,15 +52,16 @@ const Navbar = () => {
           <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to="/" onClick={handleContactClick}>Contact us</Link></li>
         </ul>
         <ul className="icons">
-          {!isOpen && isDesktop ? (
+          {isOpen && isDesktop ? (
             <>
-              <li><img src={search} alt="Search" /></li>
+              <li>
+               <Link to='/favorites'><img src={Heart} alt="Wishlist"  /></Link> </li>
               <li><Link to="/cart"><img src={shopping} alt="Cart" /></Link></li>
             </>
           ) : (
             <>
-              <li><img src={searchW} alt="Search" /><span>Search</span></li>
-              <Link to="/cart" > <li><img src={shoppingW} alt="Cart" /><span>Cart</span></li></Link>
+              <li><span>Wishlist</span></li>
+             
             </>
           )}
         </ul>
@@ -70,7 +71,7 @@ const Navbar = () => {
      
       {!isDesktop && (
           <div className="mobile-cart-icon">
-            <Link to="/cart"><img src={shopping} alt="Cart" className='w-[20px]' /></Link>
+            <Link to="/cart"><img src={shopping} alt="Cart" className='w-[28px]' /></Link>
           </div>
         )}
       <div className="menu-icons">

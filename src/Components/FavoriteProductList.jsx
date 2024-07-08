@@ -66,7 +66,7 @@ const FavoriteProductList = ({ products, addToCart }) => {
 
   return (
     <div id='favoriteproducts' className='flex flex-col justify-start w-[95vw] items-center gap-10 mx-auto px-4 tablet:px-6 phone:px-4'>
-      <h2 className='font-medium text-[32px] text-center'>Favorite Products</h2>
+      <h2 className='font-medium text-[32px] text-center'>WishList</h2>
       <div className={`grid grid-cols-3 gap-7 tablet:grid-cols-2 phone:grid-cols-1 ${currentPage === 1 ? 'grid-cols-3' : ''}`}>
         {displayedProducts.map(product => (
           <div key={product.id} className="bg-white w-full rounded-xl tablet:w-full phone:w-full">

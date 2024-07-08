@@ -5,6 +5,7 @@ import leftArrow from '../icons/LeftArrow.svg';
 import rightArrow from '../icons/RightArrow.svg';
 import AddToCartNotification from '../Components/AddToCartNotification';
 import Navbar from '../Components/Navbar';
+import ColorPicker from '../Components/ColoPicker';
 
 const Product = ({ products, addToCart }) => {
   const { id } = useParams();
@@ -64,19 +65,14 @@ const Product = ({ products, addToCart }) => {
           <h2 className="text-3xl md:text-4xl font-semibold">{product.name}</h2>
           <span className='font-semibold text-2xl text-black'>£{product.price.toFixed(2)}</span>
           <p className='text-[#747373]  md:text-md'>{product.description}</p>
-          <div className='flex flex-row gap-2 md:gap-4 mx-auto'>
-            <div className='w-[60px] h-[60px] md:w-[45px] md:h-[45px] rounded-full bg-[#2A2D30] border-4 border-[#E4851A]'></div>
-            <div className='w-[60px] h-[60px] md:w-[45px] md:h-[45px] rounded-full bg-[#234566]'></div>
-            <div className='w-[60px] h-[60px] md:w-[45px] md:h-[45px] rounded-full bg-[#C6CFD7]'></div>
-            <div className='w-[60px] h-[60px] md:w-[45px] md:h-[45px] rounded-full bg-[#BBB1A7]'></div>
-            <div className='w-[60px] h-[60px] md:w-[45px] md:h-[45px] rounded-full bg-[#82572C]'></div>
-          
+          <div className='flex flex-row  gap-2 md:gap-4 mx-auto'>
+            <ColorPicker/>
           </div>
           <div className='flex flex-col justify-between items-center w-full gap-2  phone:pb-9'>
             <button className="w-full bg-[#343A40] text-white text-sm py-2 px-3 rounded tablet:w-[40vw] tablet:py-3" onClick={handleAddToCart}>
               Add to Cart
             </button>
-            <button className="w-full bg-[#F5F5F5] text-[#343A40] text-sm py-2 px-3 rounded font-semibold tablet:w-[40vw] tablet:py-3">
+            <button className="w-full bg-[#F5F5F5] text-[#343A40] text-sm py-2 px-3 rounded border font-semibold tablet:w-[40vw] tablet:py-3 border-[#343A40]">
               Add to WishList
             </button>
           </div>

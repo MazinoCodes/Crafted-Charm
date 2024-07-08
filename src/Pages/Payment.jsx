@@ -34,18 +34,7 @@ const Payment = () => {
     }
   }, []);
 
-  const handleCardNumberChange = (e) => {
-    const { value } = e.target;
-    if (value.startsWith('4')) {
-      setCardLogo(visa);
-    } else if (value.startsWith('5')) {
-      setCardLogo(paypal);
-    } else if (value.startsWith('3')) {
-      setCardLogo(app);
-    } else {
-      setCardLogo(mc); // default logo
-    }
-  };
+  
 
   const handleConfirmPurchase = () => {
     setShowPopup(true);
@@ -80,11 +69,10 @@ const Payment = () => {
                   name="cardNumber"
                   placeholder="1234 5678 9012 3456"
                   value={cardNumber}
-                  onChange={handleCardNumberChange}
                   className="border-y border-l border-[#343A40] p-3 rounded-l-md w-[39vw] phone:w-[87vw] tablet:w-[48vw]"
                 />
                 <button className="flex items-center justify-center h-fit w-fit border-y border-r border-[#343A40] rounded-r-md pr-4 ">
-                  <img src={cardLogo} alt="Card Logo" className="w-fupy-1 phone:w-[35.5px] tablet:w-[35.5px]" />
+                  <img src={cardLogo} alt="Card Logo" className="w-[34.5px] py-1 phone:w-[35.5px] tablet:w-[35.5px]" />
                 </button>
               </div>
             </div>

@@ -42,7 +42,7 @@ const Hero = () => {
           </a>
         </div>
         <div className="flex flex-row items-center flex-2 justify-center tablet:flex-1 tablet:w-full phone:flex-1 phone:w-full">
-          <button className="bg-[#343A4099] w-fit px-4 py-3 rounded-[48px] tablet:px-3 tablet:py-2 phone:px-2 phone:py-1" onClick={handlePrevImage}>
+          <button className="bg-[#343A40] w-fit px-4 py-3 rounded-[48px] tablet:px-3 tablet:py-2 phone:px-2 phone:py-1" onClick={handlePrevImage}>
             <img src={leftArrow} alt="" />
           </button>
           <img className="w-full tablet:w-3/4 phone:w-3/4" src={heroimg[currentImageIndex]} alt="" />
@@ -53,19 +53,19 @@ const Hero = () => {
       </div>
       <div className="w-fit bg-[white] flex flex-row justify-between items-center mx-auto gap-10 px-10 py-3 rounded-[10px] mb-20 phone:px-5 phone:gap-6 phone:w-[90vw]">
         <p className="flex flex-col items-center  "> 
-            <span className='text-2xl font-semibold phone:text-2xl'>10k</span>
-            <span className='text-lg font-normal phone:text-base'>Customers</span>
+            <span className='text-xl font-semibold phone:text-xl'>10k</span>
+            <span className='text-base font-normal phone:text-base'>Customers</span>
         </p>
       <img src={line} alt="" />
         <p className="flex flex-col items-center   "> 
-          <span className='text-2xl font-semibold phone:text-2xl'>20k</span>
-          <span className='text-lg font-normal phone:text-base'>Sold</span>
+          <span className='text-xl font-semibold phone:text-xl'>20k</span>
+          <span className='text-base font-normal phone:text-base'>Sold</span>
         </p>
         <img src={line} alt="" />
 
         <p className="flex flex-col items-center"> 
-          <span className='text-2xl font-semibold phone:text-2xl'>300</span>
-          <span className='text-lg font-normal phone:text-base'>Outlets</span>
+          <span className='text-xl font-semibold phone:text-xl'>300</span>
+          <span className='text-base font-normal phone:text-base'>Outlets</span>
         </p>
       </div>
     </div>
