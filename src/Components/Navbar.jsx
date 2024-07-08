@@ -47,7 +47,7 @@ const Navbar = () => {
         <ul>
           <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to="/" onClick={handleProductClick}>Home</Link></li>
           <li className="hover:text-[#343A40] hover:font-semibold">
-          <Link to="/ourproducts" >Product</Link>
+          <Link to="/ourproducts" >Products</Link>
         </li>
           <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to="/" onClick={handleContactClick}>Contact us</Link></li>
         </ul>
