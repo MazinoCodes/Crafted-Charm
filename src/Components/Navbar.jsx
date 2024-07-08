@@ -47,12 +47,12 @@ const Navbar = () => {
         <ul>
           <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to="/" onClick={handleProductClick}>Home</Link></li>
           <li className="hover:text-[#343A40] hover:font-semibold">
-          <Link to="/" onClick={handleProductClick}>Product</Link>
+          <Link to="/ourproducts" >Product</Link>
         </li>
           <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to="/" onClick={handleContactClick}>Contact us</Link></li>
         </ul>
         <ul className="icons">
-          {isOpen && isDesktop ? (
+          {!isOpen && isDesktop ? (
             <>
               <li>
                <Link to='/favorites'><img src={Heart} alt="Wishlist"  /></Link> </li>

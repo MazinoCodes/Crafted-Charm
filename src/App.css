@@ -133,6 +133,9 @@ body{
   
   
   @media (max-width: 1024px) {
+    .margin{
+      margin-left: -10px;
+    }
     .nav {
       padding: 5px 15px;
     }

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Hero from '../Components/Hero';
 import ProductList from '../Components/ProductList';
 import Footer from '../Components/Footer';
-import Contact from './Contact';
+import Contact from '../Components/Contact';
 
 const Homepage = ({ products, addToCart }) => {
 

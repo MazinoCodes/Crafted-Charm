@@ -8,6 +8,8 @@ import Product from './Pages/Product';
 import Homepage from './Pages/Homepage';
 import Payment from './Pages/Payment';
 import FavoriteProductList from './Components/FavoriteProductList';
+import ProductList from './Components/ProductList';
+import Navbar from './Components/Navbar';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -50,6 +52,10 @@ function App() {
       <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />} />
       <Route path="/payment" element={<Payment products={products} addToCart={addToCart} />} />
       <Route path="/favorites" exact element={<FavoriteProductList products={products} addToCart={addToCart} />} />
+      <Route path="/ourproducts" exact element={<div className='mt-4'>
+        <Navbar/>
+        <ProductList products={products} addToCart={addToCart} />
+      </div>} />
 
     </Routes>
   );

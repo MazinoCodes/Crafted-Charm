@@ -13,7 +13,7 @@ const Contact = () => {
       <h1 className='text-3xl font-semibold text-center'>Contact Us</h1>
       <div className='flex flex-col md:flex-row justify-between w-[90vw] gap-20'>
         <div className='flex flex-col items-start gap-6 flex-[2] w-full md:w-auto'>
-          <p className='text-2xl font-semibold text-center md:text-left'>Do you need help? Send us a message</p>
+          <p className='text-2xl font-semibold text-center md:text-left '>Do you need help? Send us a message</p>
           <div className="flex flex-col items-start gap-2 w-full">
             <label>Full Name</label>
             <input type="text" className='w-full border border-[#343A40] rounded-xl px-4 py-[7px]' placeholder='John Doe' />

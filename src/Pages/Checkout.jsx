@@ -55,10 +55,10 @@ const handlePaymentMethodChange = (method) => {
   const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className='flex flex-col pt-4 w-[90vw] mx-auto gap-5  justify-center'>
+    <div className='flex flex-col pt-4 w-[90vw] mx-auto gap-5  justify-center overflow-x-hidden'>
       <Navbar/>
       <div className='flex flex-col items-center gap-7'>
-      <h2 className='font-semibold text-3xl text-center'>Checkout</h2>
+      <h2 className='font-semibold text-3xl text-center '>Checkout</h2>
       <StepProgress step={currentStep} />
       {currentStep === 1 && (
         <div className='flex flex-col items-center justify-center'>
@@ -71,7 +71,7 @@ const handlePaymentMethodChange = (method) => {
                 placeholder='John Doe'
                 value={userDetails.name}
                 onChange={handleInputChange}
-                className='border p-2 rounded-md w-[40vw] phone:w-[90vw] tablet:w-[50vw] border-[#343A40]'
+                className='border p-2 rounded-md w-[40vw] phone:w-[89vw] tablet:w-[50vw] border-[#343A40]'
               />
             </div>
             <div className='flex flex-col items-start w-full phone:pl-5'>
@@ -82,7 +82,7 @@ const handlePaymentMethodChange = (method) => {
                 placeholder='example@email.com'
                 value={userDetails.email}
                 onChange={handleInputChange}
-                className='border p-2 rounded-md w-[40vw] phone:w-[90vw] tablet:w-[50vw] border-[#343A40]'
+                className='border p-2 rounded-md w-[40vw] phone:w-[89vw] tablet:w-[50vw] border-[#343A40]'
               />
             </div>
             <div className='flex flex-col items-start w-full phone:pl-5'>
@@ -93,7 +93,7 @@ const handlePaymentMethodChange = (method) => {
                 placeholder='+44765-787-76'
                 value={userDetails.phone}
                 onChange={handleInputChange}
-                className='border p-2 rounded-md w-[40vw] phone:w-[90vw] tablet:w-[50vw] border-[#343A40]'
+                className='border p-2 rounded-md w-[40vw] phone:w-[89vw] tablet:w-[50vw] border-[#343A40]'
               />
             </div>
           </div>
@@ -239,7 +239,7 @@ const handlePaymentMethodChange = (method) => {
       )}
       <div className='flex flex-col justify-between mt-4 w-[40vw] items-center phone:px-5 phone:w-[100vw] tablet:w-[50vw] gap-4'>
 
-        <div className='flex flex-row w-[40vw] gap-2 phone:w-[90vw] tablet:w-[70vw]'>
+        <div className='flex flex-row w-[40vw] gap-2 phone:w-[90vw] tablet:w-[50vw]'>
 
        
        { currentStep >= 2 ? <button
@@ -250,7 +250,7 @@ const handlePaymentMethodChange = (method) => {
           Previous
         </button>: <></>}
         <button
-       className={`w-full ${currentStep >= 2 ? 'bg-[#343A40] w-[49%]' : 'bg-[#343A40]'} text-sm text-center py-2 rounded-md text-[#F5F5F5]`}  onClick={handleNextStep}>
+       className={`w-full  ${currentStep >= 2 ? 'bg-[#343A40] w-[50%] tablet:[50%]' : 'bg-[#343A40]'} text-sm text-center py-2 rounded-md text-[#F5F5F5]`}  onClick={handleNextStep}>
 
             {currentStep === 3 ? <Link to='/payment'>Confirm Purchase</Link> : 'Next'}
          

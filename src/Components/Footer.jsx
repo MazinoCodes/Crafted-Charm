@@ -15,7 +15,7 @@ const Footer = () => {
                
               <p className='flex flex-row items-center'> 
                 <input type="text" placeholder='Your@email.com' className='bg-[white] text-[#343A40] px-2 py-1 rounded-tl-[10px] rounded-bl-[10px] w-[22vw] phone:w-[70vw]'/>
-                <button className='bg-[#F5F5F5] text-[#343A40] px-5 py-1 rounded-tr-[10px] rounded-br-[10px]'>Send</button></p> 
+                <button className='bg-[#F5F5F5] text-[#343A40] px-5 py-1 rounded-tr-[10px] rounded-br-[10px] margin'>Send</button></p> 
             </div>
             <div className='flex flex-row justify-between gap-10'>
                 <div className='flex flex-col items-start gap-1'>

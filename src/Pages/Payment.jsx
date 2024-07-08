@@ -72,7 +72,7 @@ const Payment = () => {
                   className="border-y border-l border-[#343A40] p-3 rounded-l-md w-[39vw] phone:w-[87vw] tablet:w-[48vw]"
                 />
                 <button className="flex items-center justify-center h-fit w-fit border-y border-r border-[#343A40] rounded-r-md pr-4 ">
-                  <img src={cardLogo} alt="Card Logo" className="w-[34.5px] py-1 phone:w-[35.5px] tablet:w-[35.5px]" />
+                  <img src={cardLogo} alt="Card Logo" className="w-[34.5px] py-1 phone:w-[35px] tablet:w-[35px]" />
                 </button>
               </div>
             </div>
@@ -108,13 +108,13 @@ const Payment = () => {
             </label>
           </div>
           <div className='flex flex-col justify-between mt-4 w-[40vw] items-center phone:px-5 phone:w-[100vw] tablet:w-[50vw] gap-4'>
-            <div className='flex flex-row w-[40vw] gap-2 phone:w-[90vw] tablet:w-[70vw]'>
+            <div className='flex flex-row w-[40vw] gap-2 phone:w-[90vw] tablet:w-[50vw]'>
               <Link to='/checkout' className={'w-1/2 bg-[#f5f5f5] border border-[#343A40] text-[#343A40] text-sm text-center py-2 rounded-md'}>
                 <button>Previous</button>
               </Link>
               <button
                 onClick={handleConfirmPurchase}
-                className="bg-[#343A40] w-[70%] text-sm text-center py-2 rounded-md text-[#F5F5F5]"
+                className="bg-[#343A40] w-1/2 text-sm text-center py-2 rounded-md text-[#F5F5F5]"
               >
                 Confirm Purchase
               </button>
@@ -127,14 +127,14 @@ const Payment = () => {
       </div>
       {showPopup && (
         <div className=" w-[100vw] fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-md shadow-lg w-[20vw] flex flex-col items-center text-center gap-4 phone:w-[80vw] tablet:w-[40vw]">
+          <div className="bg-white p-6  shadow-lg w-[20vw] flex flex-col items-center text-center gap-4 phone:w-[70vw] tablet:w-[40vw] rounded-[20px]">
             <img src={check}/>
             <h2 className="text-xl font-semibold mb-4 text-[#40B509]">Payment Succesful</h2>
             <p className='text-[#888888]'>Your Order has been placed, it would be sent out for delivery soon</p>
             <Link to='/'>
             <button
               onClick={closePopup}
-              className=" w-[18vw] mt-4 bg-[#343A40] text-white py-2 px-4 rounded-md text-xs  phone:w-[70vw] tablet:w-[30vw]"
+              className=" w-[18vw] mt-4 bg-[#343A40] text-white py-2 px-4 rounded-md text-xs  phone:w-[60vw] tablet:w-[30vw]"
             >
               Continue Shopping
             </button>
