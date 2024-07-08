@@ -4,7 +4,6 @@ import arrow from '../icons/Arrow.svg';
 import remove from '../icons/Remove icon.svg';
 import plus from '../icons/plus.svg';
 import minus from '../icons/minus.svg';
-import Barrow from '../icons/BlackArrow.svg';
 import Navbar from '../Components/Navbar';
 
 const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
@@ -74,7 +73,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
             </li>
           ))}
         </ul>
-        <div className='w-[80vw] mx-auto md:w-[400px] flex flex-col justify-start gap-6 phone:h-auto  tablet:h-auto h-[100vh] fixed  left-[70%] phone:relative phone:left-0 tablet:relative tablet:left-0 phone:mt-24'>
+        <div className='w-[80vw] mx-auto md:w-[400px] flex flex-col justify-start gap-6 phone:h-auto  tablet:h-auto h-[100vh] fixed  left-[65%] phone:relative phone:left-0 tablet:relative tablet:left-0 phone:my-16'>
           <h2 className='border-b border-black font-semibold pb-5'>Order Summary</h2>
           <div className='flex flex-col gap-3'>
             <h4 className='flex flex-row justify-between text-sm font-normal text-[#747373]'>

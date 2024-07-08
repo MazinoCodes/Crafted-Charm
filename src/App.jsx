@@ -5,9 +5,8 @@ import products from './Components/products';
 import Cart from './Pages/Cart'; // Ensure this is correctly imported
 import Checkout from './Pages/Checkout';
 import Product from './Pages/Product';
-import FavoriteProductList from './Components/FavoriteProductList';
 import Homepage from './Pages/Homepage';
-import Contact from './Pages/Contact';
+import Payment from './Pages/Payment';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -48,8 +47,8 @@ function App() {
       <Route path="/cart" exact element={<Cart cartItems={cart} removeFromCart={removeFromCart} addToCart={addToCart} removeItemFromCart={removeItemFromCart} />} /> 
       <Route path="/checkout" exact element={<Checkout cartItems={cart} />} />
       <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />} />
-      <Route path="/favorites" exact element={<FavoriteProductList products={products} addToCart={addToCart} />} />
-      <Route path='/contactus' exact element={<Contact/>}></Route>
+      <Route path="/payment" element={<Payment products={products} addToCart={addToCart} />} />
+
     </Routes>
   );
 }
