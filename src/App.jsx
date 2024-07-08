@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useState } from 'react';
 import products from './Components/products';
-import Cart from './Pages/Cart'; // Ensure this is correctly imported
+import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import Product from './Pages/Product';
 import Homepage from './Pages/Homepage';
@@ -44,19 +44,27 @@ function App() {
     setCart(cart.filter(item => item.id !== product.id));
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <Routes>
-      <Route path="/" exact element={<Homepage   products={products} addToCart={addToCart} />} />
-      <Route path="/cart" exact element={<Cart cartItems={cart} removeFromCart={removeFromCart} addToCart={addToCart} removeItemFromCart={removeItemFromCart} />} /> 
+      <Route path="/" exact element={<Homepage products={products} addToCart={addToCart} />} />
+      <Route path="/cart" exact element={<Cart cartItems={cart} removeFromCart={removeFromCart} addToCart={addToCart} removeItemFromCart={removeItemFromCart} />} />
       <Route path="/checkout" exact element={<Checkout cartItems={cart} />} />
       <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />} />
-      <Route path="/payment" element={<Payment products={products} addToCart={addToCart} />} />
-      <Route path="/favorites" exact element={<FavoriteProductList products={products} addToCart={addToCart} />} />
-      <Route path="/ourproducts" exact element={<div className='mt-4'>
-        <Navbar/>
-        <ProductList products={products} addToCart={addToCart} />
-      </div>} />
-
+      <Route path="/payment" element={<Payment clearCart={clearCart} />} />
+      <Route path="/favorites" exact element={ <div className='mt-4'>
+          <Navbar />
+          <FavoriteProductList products={products} addToCart={addToCart} />
+        </div>} />
+      <Route path="/ourproducts" exact element={
+        <div className='mt-4'>
+          <Navbar />
+          <ProductList products={products} addToCart={addToCart} />
+        </div>
+      } />
     </Routes>
   );
 }

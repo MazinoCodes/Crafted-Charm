@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
 import { Link } from 'react-router-dom';
 import StepProgress from '../Components/StepProgress';
@@ -6,8 +6,9 @@ import app from '../icons/Apple.svg';
 import paypal from '../icons/Paypal.svg';
 import visa from '../icons/Visa.svg';
 import mc from '../icons/Mastercard.svg';
-import check from '../icons/checkmark.svg'
-const Payment = () => {
+import check from '../icons/checkmark.svg';
+
+const Payment = ({ clearCart }) => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -34,10 +35,9 @@ const Payment = () => {
     }
   }, []);
 
-  
-
   const handleConfirmPurchase = () => {
     setShowPopup(true);
+    clearCart(); // Clear the cart after confirming the purchase
   };
 
   const closePopup = () => {
@@ -45,7 +45,7 @@ const Payment = () => {
   };
 
   return (
-    <div className='flex flex-col  justify-center gap-5 pt-6 w-[100vw] mx-auto'>
+    <div className='flex flex-col justify-center gap-5 pt-6 w-[100vw] mx-auto'>
       <Navbar className="w-[100vw]" />
       <div className="flex flex-col items-center justify-center pt-7 gap-9">
         <StepProgress step={3} className="w-full" />
@@ -128,16 +128,16 @@ const Payment = () => {
       {showPopup && (
         <div className=" w-[100vw] fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6  shadow-lg w-[20vw] flex flex-col items-center text-center gap-4 phone:w-[70vw] tablet:w-[40vw] rounded-[20px]">
-            <img src={check}/>
-            <h2 className="text-xl font-semibold mb-4 text-[#40B509]">Payment Succesful</h2>
+            <img src={check} />
+            <h2 className="text-xl font-semibold mb-4 text-[#40B509]">Payment Successful</h2>
             <p className='text-[#888888]'>Your Order has been placed, it would be sent out for delivery soon</p>
             <Link to='/'>
-            <button
-              onClick={closePopup}
-              className=" w-[18vw] mt-4 bg-[#343A40] text-white py-2 px-4 rounded-md text-xs  phone:w-[60vw] tablet:w-[30vw]"
-            >
-              Continue Shopping
-            </button>
+              <button
+                onClick={closePopup}
+                className=" w-[18vw] mt-4 bg-[#343A40] text-white py-2 px-4 rounded-md text-xs  phone:w-[60vw] tablet:w-[30vw]"
+              >
+                Continue Shopping
+              </button>
             </Link>
           </div>
         </div>

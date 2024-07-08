@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Heart from '../icons/Heart.svg';
 import shopping from '../icons/Shopping Icon.svg';
-import HeartW from '../icons/HeartW.svg';
-import shoppingW from '../icons/ShoppingW.svg';
 import { useNavigate, useLocation } from 'react-router-dom';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
