@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import StepProgress from '../Components/StepProgress';
 import app from '../icons/Apple.svg';
@@ -9,7 +10,6 @@ import mc from '../icons/Mastercard.svg';
 import check from '../icons/checkmark.svg';
 
 const Payment = ({ clearCart }) => {
-  const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [cardLogo, setCardLogo] = useState(mc);
@@ -68,7 +68,6 @@ const Payment = ({ clearCart }) => {
                   type="text"
                   name="cardNumber"
                   placeholder="1234 5678 9012 3456"
-                  value={cardNumber}
                   className="border-y border-l border-[#343A40] p-3 rounded-l-md w-[39vw] phone:w-[87vw] tablet:w-[48vw]"
                 />
                 <button className="flex items-center justify-center h-fit w-fit border-y border-r border-[#343A40] rounded-r-md pr-4 ">
@@ -147,3 +146,6 @@ const Payment = ({ clearCart }) => {
 };
 
 export default Payment;
+Payment.propTypes={
+  clearCart: PropTypes.func.isRequired,
+}

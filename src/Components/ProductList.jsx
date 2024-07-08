@@ -99,8 +99,8 @@ const ProductList = ({ products, addToCart }) => {
     'All Products',
     'Living Room',
     'Bedroom',
-    'Kitchen',
-    'Dining'
+     'Dining Room',
+    'Table',
   ];
 
   const sortOptions = [

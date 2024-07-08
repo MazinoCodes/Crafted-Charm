@@ -7,7 +7,7 @@ import paypal from '../icons/Paypal.svg'
 import visa from '../icons/Visa.svg'
 import Navbar from '../Components/Navbar';
 import StepProgress from '../Components/StepProgress';
-const Checkout = ({ cartItems, clearCart }) => {
+const Checkout = ({ cartItems }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedMethod, setSelectedMethod] = useState('');
   const [userDetails, setUserDetails] = useState({
@@ -52,7 +52,6 @@ const handlePaymentMethodChange = (method) => {
     return <h2>Your cart is empty</h2>;
   }
 
-  const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div className='flex flex-col pt-4 w-[90vw] mx-auto gap-5  justify-center overflow-x-hidden'>
