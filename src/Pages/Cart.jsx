@@ -51,7 +51,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
                 <span className='font-semibold text-base'>{item.name}</span>
               </div>
               <div className='flex flex-row justify-between gap-20 phone:items-center phone:w-full phone:gap-5 tablet:items-center tablet:w-full tablet:gap-5'>
-                <select className='border-2 border-black px-2 py-2 rounded-[10px] phone:px-0 phone:py-0 phone:w-fit phone:border-0 tablet:px-0 tablet:py-0 tablet:w-fit tablet:border-0'>
+              <select className='custom-select border border-black px-2 py-3 rounded-[10px] phone:px-0 phone:py-0 phone:w-fit phone:border-0 tablet:px-0 tablet:py-0 tablet:w-fit tablet:border-0'>
                   <option value="" key="">Black</option>
                   <option value="" key="">Blue</option>
                   <option value="" key="">Brown</option>
@@ -60,6 +60,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
                   <option value="" key="">Orange</option>
                   <option value="" key="">Grey</option>
                 </select>
+
                 <div className='flex flex-row items-center phone:gap-4 tablet:gap-4 w-full md:w-auto phone:flex-2 tablet:flex-2 gap-6'>
                   <div className='flex flex-row items-center justify-between gap-2'>
                     <button onClick={() => handleRemoveOne(item)} className='w-full'><img src={minus} alt="" /></button>

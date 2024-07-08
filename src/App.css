@@ -130,6 +130,35 @@ body{
     z-index: 1;
   }
   
+  .custom-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 10"><path d="M1 3 l6 6 l6 -6" fill="none" stroke="black" stroke-width="1.5"/></svg>') no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+    padding-right: 30px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .phone .custom-select {
+    padding: 0;
+    width: fit-content;
+    border: 0;
+    background-position: right 5px center;
+    padding-right: 20px;
+  }
+  
+  .tablet .custom-select {
+    padding: 0;
+    width: fit-content;
+    border: 0;
+    background-position: right 5px center;
+    padding-right: 20px;
+  }
+  
   
   
   @media (max-width: 1024px) {
