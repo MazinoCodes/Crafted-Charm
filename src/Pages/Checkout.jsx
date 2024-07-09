@@ -244,12 +244,12 @@ const handlePaymentMethodChange = (method) => {
        { currentStep >= 2 ? <button
           onClick={handlePrevStep}
           disabled={currentStep === 1}
-          className={`w-[49%] bg-[#f5f5f5] border border-[#343A40] text-[#343A40] text-sm text-center py-2 rounded-md ${currentStep === 1 ? 'text-gray-500 cursor-not-allowed' : 'text-[#343A40]'}`}
+          className={`w-[50%] bg-[#f5f5f5] border border-[#343A40] text-[#343A40] text-sm text-center py-2 rounded-md ${currentStep === 1 ? 'text-gray-500 cursor-not-allowed' : 'text-[#343A40]'}`}
         >
           Previous
         </button>: <></>}
         <button
-       className={`w-full  ${currentStep >= 2 ? 'bg-[#343A40] w-[50%] tablet:[50%] phone:w-[49%]' : 'bg-[#343A40]'} text-sm text-center py-2 rounded-md text-[#F5F5F5]`}  onClick={handleNextStep}>
+       className={`w-[50%]  ${currentStep >= 2 ? 'bg-[#343A40] w-[50%] tablet:[50%] phone:w-[49%]' : 'bg-[#343A40]'} text-sm text-center py-2 rounded-md text-[#F5F5F5]`}  onClick={handleNextStep}>
 
             {currentStep === 3 ? <Link to='/payment'>Confirm Purchase</Link> : 'Next'}
          

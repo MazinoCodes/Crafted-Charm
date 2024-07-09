@@ -142,7 +142,9 @@ body{
     padding: 10px;
     border-radius: 10px;
   }
-  
+  .borR{
+    border-radius: 10px !important;
+  }
   .phone .custom-select {
     padding: 0;
     width: fit-content;

@@ -8,7 +8,7 @@ import heartFilled from '../icons/heart-filled.svg';
 import addCart from '../icons/CartShoppingBag.svg';
 import leftArrow from '../icons/LeftArrow.svg';
 import rightArrow from '../icons/RightArrow.svg';
-
+import search from '../icons/Search Icon.svg'
 const ProductList = ({ products, addToCart }) => {
   const [notificationItem, setNotificationItem] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -119,9 +119,14 @@ const ProductList = ({ products, addToCart }) => {
   };
 
   return (
-    <div id='ourproducts' className='flex flex-col w-[95vw] gap-10 mx-auto tablet:px-6 phone:px-4 pt-5 bg-white'>
+    <div id='ourproducts' className='flex flex-col w-[95vw] gap-10 mx-auto tablet:px-6 phone:px-4 pt-5 bg-white phone:pt-0'>
       <div className='flex flex-col items-center justify-start gap-9'>
-        <h2 className='font-medium text-[32px] text-center'>Our Products</h2>
+      <div className="relative w-full rounded-[10px]">
+        <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+            <img src={search} />
+        </span>
+        <input type="text" className="w-full pl-10 pr-4 py-2 border border-[#343A40]rounded-[10px] focus:outline-none focus:border-blue-500 borR" placeholder="Search"/>
+    </div>
         <div className='flex flex-row justify-between w-full mx-auto tablet:flex-col tablet:gap-4  phone:gap-4 text-[#343A40]'>
           {window.innerWidth < 768 ? (
             <>
