@@ -21,64 +21,23 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', updateMedia);
   }, []);
 
-  const handleProductClick = (e) => {
-    if (location.pathname === '/') {
-      e.preventDefault();
-      document.getElementById('ourproducts')?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#ourproducts');
-    }
-  };
-  const handleContactClick = (e) => {
-    if (location.pathname === '/') {
-      e.preventDefault();
-      document.getElementById('contactus')?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#contactus');
-    }
-  };
+ 
   return (
     <div className="nav ">
-      <div className="logo font-semibold text-xl tablet:text-xl phone:text-l">
+      <div className="logo font-semibold text-xl tablet:text-xl phone:text-l flex flex-row justify-between">
         <Link to='/'>Crafted Charm</Link></div>
-      
-      <nav className={`navbar body-font ${isOpen ? 'active' : ''}`}>
-        <ul>
-          <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to="/" onClick={handleProductClick}>Home</Link></li>
-          <li className="hover:text-[#343A40] hover:font-semibold">
-          <Link to="/ourproducts" >Products</Link>
-        </li>
-          <li className=' hover:text-[#343A40] hover:font-semibold'> <Link to="/" onClick={handleContactClick}>Contact us</Link></li>
-        </ul>
-        <ul className="icons">
-          {!isOpen && isDesktop ? (
-            <>
-              <li>
-               <Link to='/favorites'><img src={Heart} alt="Wishlist"  /></Link> </li>
+      <div className="nav-links flex  flex-row justify-between items-center">
+        <ul className="icons flex flex-row items-center gap-4">
+
+               <li><Link to='/favorites'><img src={Heart} alt="Wishlist"  /></Link> </li>
               <li><Link to="/cart"><img src={shopping} alt="Cart" /></Link></li>
-            </>
-          ) : (
-            <>
-              <li><span>Wishlist</span></li>
-             
-            </>
-          )}
+       
+
         </ul>
-      </nav>
       <div className='flex flex-row items-center gap-5'>
 
      
-      {!isDesktop && (
-          <div className="mobile-cart-icon">
-            <Link to="/cart"><img src={shopping} alt="Cart" className='w-[28px]' /></Link>
-          </div>
-        )}
-      <div className="menu-icons">
-        <div className="menu-icon" onClick={toggleMenu}>
-          <div className={`bar ${isOpen ? 'open' : ''}`}></div>
-          <div className={`bar ${isOpen ? 'open' : ''}`}></div>
-          <div className={`bar ${isOpen ? 'open' : ''}`}></div>
-        </div>
+   
         </div>
       </div>
     </div>

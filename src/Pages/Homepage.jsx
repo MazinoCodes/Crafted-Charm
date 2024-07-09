@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import Hero from '../Components/Hero';
 import ProductList from '../Components/ProductList';
 import Footer from '../Components/Footer';
 import Contact from '../Components/Contact';
@@ -8,8 +7,8 @@ import Navbar from '../Components/Navbar';
 const Homepage = ({ products, addToCart }) => {
 
   return (
-    <div className="bg-white flex flex-col gap-15 w-[100vw] mx-auto  phone:gap-10  tablet:gap-16">
-      <div className='mt-4 ml-9'>
+    <div className="bg-white flex flex-col gap-15 w-[100vw] mx-auto  phone:gap-10   tablet:gap-5">
+      <div className='mt-4 ml-9 phone:ml-2 tablet:mr-4'>
       <Navbar />
 
       </div>

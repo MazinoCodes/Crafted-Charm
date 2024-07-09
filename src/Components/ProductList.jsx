@@ -8,7 +8,7 @@ import heartFilled from '../icons/heart-filled.svg';
 import addCart from '../icons/CartShoppingBag.svg';
 import leftArrow from '../icons/LeftArrow.svg';
 import rightArrow from '../icons/RightArrow.svg';
-import search from '../icons/Search Icon.svg';
+import searchIcon from '../icons/Search Icon.svg';
 
 const ProductList = ({ products, addToCart }) => {
   const [notificationItem, setNotificationItem] = useState(null);
@@ -16,7 +16,7 @@ const ProductList = ({ products, addToCart }) => {
   const [favorites, setFavorites] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState('All Products');
   const [filteredProducts, setFilteredProducts] = useState(products);
-  const [sortBy, setSortBy] = useState('Filter');
+  const [sortBy, setSortBy] = useState('default');
   const [searchQuery, setSearchQuery] = useState('');
   const itemsPerPage = 12;
 
@@ -26,17 +26,19 @@ const ProductList = ({ products, addToCart }) => {
   }, []);
 
   useEffect(() => {
-    let updatedProducts = products;
+    let filtered = products;
 
     if (selectedFilter !== 'All Products') {
-      updatedProducts = updatedProducts.filter(product => product.category === selectedFilter);
+      filtered = products.filter(product => product.category === selectedFilter);
     }
 
     if (searchQuery) {
-      updatedProducts = updatedProducts.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      filtered = filtered.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     }
 
-    setFilteredProducts(updatedProducts);
+    setFilteredProducts(filtered);
     setCurrentPage(1);
   }, [selectedFilter, searchQuery, products]);
 
@@ -125,23 +127,19 @@ const ProductList = ({ products, addToCart }) => {
     setSortBy(sort);
   };
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
   return (
-    <div id='ourproducts' className='flex flex-col w-[95vw] gap-10 mx-auto tablet:px-6 phone:px-4 pt-5 bg-white phone:pt-0'>
+    <div id='ourproducts' className='flex flex-col w-[95vw] gap-10 mx-auto tablet:px-6 phone:px-4 pt-5 bg-white'>
       <div className='flex flex-col items-center justify-start gap-9'>
-        <div className="relative w-full rounded-[10px]">
+        <div className="relative w-full">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-            <img src={search} alt="Search Icon" />
+            <img src={searchIcon} alt="Search Icon" />
           </span>
           <input
             type="text"
-            className="w-full pl-10 pr-4 py-2 border border-[#343A40] rounded-[10px] focus:outline-none"
+            className="w-full pl-10 pr-4 py-2 border border-[#343A40] rounded-[10px] focus:outline-none focus:border-blue-500"
             placeholder="Search"
             value={searchQuery}
-            onChange={handleSearchChange}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
         <div className='flex flex-row justify-between w-full mx-auto tablet:flex-col tablet:gap-4 phone:gap-4 text-[#343A40]'>
@@ -205,8 +203,8 @@ const ProductList = ({ products, addToCart }) => {
                   <div className='flex flex-col gap-1'>
                     <p className="font-semibold text-2xl">£{product.price.toFixed(2)}</p>
                     <p className='text-xs font-normal flex flex-row gap-1 items-center'>
-                      <img src={star} alt="Star" />
-                      <span>{product.rating}</span>
+                      <img src={star} alt="" />
+                      <span>{product.rating} </span>
                       <span className='text-[#747373]'> ({product.review} Reviews) </span>
                     </p>
                   </div>
@@ -221,31 +219,51 @@ const ProductList = ({ products, addToCart }) => {
             </div>
           ))}
         </div>
-        {notificationItem && <AddToCartNotification item={notificationItem} />}
-        <div className="flex justify-between items-center w-full mt-4">
-          <button
-            className={`text-sm font-semibold ${currentPage === 1 ? 'invisible' : 'visible'}`}
-            onClick={handlePrevPage}
-          >
-            <img src={leftArrow} alt="Previous" />
-          </button>
-          <div className="flex items-center gap-2 text-sm font-semibold">
-            <span>{resultStart} - {resultEnd} of {filteredProducts.length} Results</span>
+        {notificationItem && (
+          <AddToCartNotification item={notificationItem} onClose={() => setNotificationItem(null)} />
+        )}
+        <div className='flex justify-center items-center mt-4 w-full'>
+          <div className='flex gap-2'>
+            <button
+              className={`px-3 py-2 mx-2 rounded-[24px] border border-[#E2E6E8] text-[#5F676D]  text-[16px] bg-[#343A40] ${currentPage === 1 ? 'cursor-not-allowed opacity-50 bg-[#343A4099]' : ''}`}
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+            >
+              <img src={leftArrow} alt="Previous Page" />
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                className={`px-4 py-2 mx-1 rounded-full border text-[16px] ${currentPage === index + 1 ? 'bg-[#343A40] text-white border-[#343A40]' : 'border-[#E2E6E8] text-[#343A40]'}`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              className={`px-3 py-2 mx-2 bg-[#343A40] border border-[#343A40] text-[#5F676D] text-[16px] rounded-full ${currentPage === totalPages ? 'cursor-not-allowed opacity-50 bg-[#343A4099]' : ''}`}
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              <img src={rightArrow} alt="Next Page" />
+            </button>
           </div>
-          <button
-            className={`text-sm font-semibold ${currentPage === totalPages ? 'invisible' : 'visible'}`}
-            onClick={handleNextPage}
-          >
-            <img src={rightArrow} alt="Next" />
-          </button>
         </div>
+        <div className='text-[#747373] font-normal'>{resultStart} - {resultEnd} of {filteredProducts.length} Results</div>
       </div>
     </div>
   );
 };
 
 ProductList.propTypes = {
-  products: PropTypes.array.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    pic: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    review: PropTypes.number.isRequired,
+  })).isRequired,
   addToCart: PropTypes.func.isRequired,
 };
 
