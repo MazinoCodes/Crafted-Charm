@@ -1,17 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import leftArrow from '../icons/LeftArrow.svg';
 import rightArrow from '../icons/RightArrow.svg';
 import AddToCartNotification from '../Components/AddToCartNotification';
 import Navbar from '../Components/Navbar';
-import ColorPicker from '../Components/ColoPicker';
+import ColorPicker from '../Components/ColorPicker';
 
 const Product = ({ products, addToCart }) => {
   const { id } = useParams();
   const product = products.find(p => p.id === parseInt(id));
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [notificationItem, setNotificationItem] = useState(null);
+  const [wishlist, setWishlist] = useState([]);
+
+  useEffect(() => {
+    const storedWishlist = JSON.parse(localStorage.getItem('favorites')) || [];
+    setWishlist(storedWishlist);
+  }, []);
+
+  const updateWishlist = (newWishlist) => {
+    setWishlist(newWishlist);
+    localStorage.setItem('favorites', JSON.stringify(newWishlist));
+  };
+
+  const handleAddToWishlist = () => {
+    if (wishlist.includes(product.id)) {
+      const newWishlist = wishlist.filter(item => item !== product.id);
+      updateWishlist(newWishlist);
+    } else {
+      const newWishlist = [...wishlist, product.id];
+      updateWishlist(newWishlist);
+    }
+  };
 
   if (!product) {
     return <h2>Product not found</h2>;
@@ -72,8 +93,11 @@ const Product = ({ products, addToCart }) => {
             <button className="w-full bg-[#343A40] text-white text-sm py-2 px-3 rounded tablet:w-[40vw] tablet:py-3" onClick={handleAddToCart}>
               Add to Cart
             </button>
-            <button className="w-full bg-[#F5F5F5] text-[#343A40] text-sm py-2 px-3 rounded border font-semibold tablet:w-[40vw] tablet:py-3 border-[#343A40]">
-              Add to WishList
+            <button
+              className={`w-full bg-[#F5F5F5] text-[#343A40] text-sm py-2 px-3 rounded border font-semibold tablet:w-[40vw] tablet:py-3 border-[#343A40] ${wishlist.includes(product.id) ? 'bg-[#343A40] ' : ''}`}
+              onClick={handleAddToWishlist}
+            >
+              {wishlist.includes(product.id) ? 'Remove from Wishlist' : 'Add to Wishlist'}
             </button>
           </div>
         </div>

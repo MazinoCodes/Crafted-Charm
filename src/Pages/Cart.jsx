@@ -46,10 +46,9 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
         <ul className='flex flex-col items-center justify-center gap-9 w-full md:w-[60vw]'>
           {cartItems.map(item => (
             <li key={item.id} className='flex flex-col md:flex-row w-full border-b-2 items-center justify-between p-3 pb-7 gap-5 tablet:flex-col'>
-              <div className='flex flex-row items-center gap-6 w-full md:w-auto phone:gap-3 tablet:gap-3'>
-                <img src={item.pic} alt={item.name} className='w-32 md:w-20 rounded-xl' />
-                <span className='font-semibold text-base'>{item.name}</span>
-              </div>
+
+                <Link to={`/product/${item.id}`}  className='flex flex-row items-center gap-6 w-full md:w-auto phone:gap-3 tablet:gap-3'><img src={item.pic} alt={item.name} className='w-32 md:w-20 rounded-xl' />
+                <span className='font-semibold text-base'>{item.name}</span></Link>
               <div className='flex flex-row justify-between gap-20 phone:items-center phone:w-full phone:gap-5 tablet:items-center tablet:w-full tablet:gap-5'>
               <select className='custom-select border border-black px-2 py-3 rounded-[10px] phone:px-0 phone:py-0 phone:w-fit phone:border-0 tablet:px-0 tablet:py-0 tablet:w-fit tablet:border-0'>
                   <option value="" key="">Black</option>
