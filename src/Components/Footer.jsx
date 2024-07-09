@@ -27,10 +27,10 @@ const Footer = () => {
                 <div>
                     <h3 className='text-2xl'>Useful Links</h3>
                     <div className='flex flex-col items-start gap-1'>
-                        <Link to='/'>Home page</Link>
-                        <Link to='/'>Product page</Link>
-                        <Link to='/'>Cart</Link>
-                        <Link to='/'>Contact Us</Link>
+                        <a href='#ourproducts'>Home page</a>
+                        <a href='#ourproducts'>Product page</a>
+                        <Link to='/cart'>Cart</Link>
+                        <a href='#contactus'>Contact Us</a>
                     </div>
                    
                 </div>
