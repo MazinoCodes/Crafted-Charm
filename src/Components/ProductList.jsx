@@ -128,7 +128,7 @@ const ProductList = ({ products, addToCart }) => {
   };
 
   return (
-    <div id='ourproducts' className='flex flex-col w-[95vw] gap-10 mx-auto tablet:px-6 phone:px-4 pt-5 bg-white'>
+    <div id='ourproducts' className='flex flex-col w-[95vw] gap-10 mx-auto tablet:px-6 phone:px-4 pt-5 bg-white pr-6 pl-3'>
       <div className='flex flex-col items-center justify-start gap-9'>
         <div className="relative w-full">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3">

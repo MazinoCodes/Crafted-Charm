@@ -1,7 +1,6 @@
+import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { useState } from 'react';
-import products from './Components/products';
 import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import Product from './Pages/Product';
@@ -13,6 +12,24 @@ import Navbar from './Components/Navbar';
 
 function App() {
   const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://api.timbu.cloud/products?organization_id=aff54f42cb464ae5adb9aec344de55fc&reverse_sort=false&page=1&Appid=2NWQH5W7FNE8ML5&Apikey=c55837c91c304d08876ffc9ba3ea484a20240712135232555921');
+        const data = await response.json();
+        setProducts(data.products); // Assuming the response structure
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const addToCart = (product, quantity = 1) => {
     const existingProduct = cart.find(item => item.id === product.id);
@@ -49,23 +66,29 @@ function App() {
   };
 
   return (
-    <Routes>
-      <Route path="/" exact element={<Homepage products={products} addToCart={addToCart} />} />
-      <Route path="/cart" exact element={<Cart cartItems={cart} removeFromCart={removeFromCart} addToCart={addToCart} removeItemFromCart={removeItemFromCart} />} />
-      <Route path="/checkout" exact element={<Checkout cartItems={cart} />} />
-      <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />} />
-      <Route path="/payment" element={<Payment clearCart={clearCart} />} />
-      <Route path="/favorites" exact element={ <div className='mt-4'>
-          <Navbar />
-          <FavoriteProductList products={products} addToCart={addToCart} />
-        </div>} />
-      <Route path="/ourproducts" exact element={
-        <div className='mt-4'>
-          <Navbar />
-          <ProductList products={products} addToCart={addToCart} />
-        </div>
-      } />
-    </Routes>
+    loading ? (
+      <div>Loading...</div>
+    ) : (
+      <Routes>
+        <Route path="/" exact element={<Homepage products={products} addToCart={addToCart} />} />
+        <Route path="/cart" exact element={<Cart cartItems={cart} removeFromCart={removeFromCart} addToCart={addToCart} removeItemFromCart={removeItemFromCart} />} />
+        <Route path="/checkout" exact element={<Checkout cartItems={cart} />} />
+        <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />} />
+        <Route path="/payment" element={<Payment clearCart={clearCart} />} />
+        <Route path="/favorites" exact element={
+          <div className='mt-4'>
+            <Navbar />
+            <FavoriteProductList products={products} addToCart={addToCart} />
+          </div>
+        } />
+        <Route path="/ourproducts" exact element={
+          <div className='mt-4'>
+            <Navbar />
+            <ProductList products={products} addToCart={addToCart} />
+          </div>
+        } />
+      </Routes>
+    )
   );
 }
 
