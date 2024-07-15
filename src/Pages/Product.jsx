@@ -90,7 +90,7 @@ const Product = ({ addToCart }) => {
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handlePrevImage}>
               <img src={leftArrow} alt="Previous" />
             </button>
-            <img src={`https://api.timbu.cloud/images/${productImages[currentImageIndex]}`} alt={product.name} className="w-[400px] md:w-[400px] rounded-[5%] phone:w-[230px] tablet:w-[300px]" />
+            <img src={`https://api.timbu.cloud/images/${productImages[currentImageIndex].url}`} alt={product.name} className="w-[400px] md:w-[400px] rounded-[5%] phone:w-[230px] tablet:w-[300px]" />
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handleNextImage}>
               <img src={rightArrow} alt="Next" />
             </button>
@@ -99,7 +99,7 @@ const Product = ({ addToCart }) => {
             {productImages.map((pic, index) => (
               <img
                 key={index}
-                src={`https://api.timbu.cloud/images/${pic}`}
+                src={`https://api.timbu.cloud/images/${pic.url}`}
                 alt={`${product.name} ${index + 1}`}
                 className={`w-16 h-16 md:w-20 md:h-20 cursor-pointer border-[0.8px] border-[#343A40] ${index === currentImageIndex ? 'border-yellow-600' : ''}`}
                 onClick={() => setCurrentImageIndex(index)}
