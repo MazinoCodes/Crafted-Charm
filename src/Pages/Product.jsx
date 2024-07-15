@@ -16,8 +16,19 @@ const Product = ({ addToCart }) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
+      
       try {
-        const response = await fetch(`https://timbu-get-single-product.reavdev.workers.dev/${id}?organization_id=${process.env.REACT_APP_ORG_ID}&reverse_sort=true&page=1&Appid=${process.env.REACT_APP_APP_ID}&Apikey=${process.env.REACT_APP_API_KEY}`);
+        const response = await axios.get(
+          `https://timbu-get-single-product.reavdev.workers.dev/${product.id}`, {
+            params: {
+              organization_id: import.meta.env.VITE_APP_ORG_ID,
+              reverse_sort: true,
+              page: 1,
+              Appid: import.meta.env.VITE_APP_APP_ID,
+              Apikey: import.meta.env.VITE_APP_API_KEY,
+            }
+          }
+        );
         const data = await response.json();
         setProduct(data); 
       } catch (error) {

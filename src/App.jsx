@@ -23,12 +23,12 @@ function App() {
       try {
         const response = await axios.get('https://timbu-get-all-products.reavdev.workers.dev/', {
           params: {
-            organization_id: process.env.REACT_APP_ORG_ID,
+            organization_id: import.meta.env.VITE_APP_ORG_ID,
             reverse_sort: true,
             page: page,
             size: 30,
-            Appid: process.env.REACT_APP_APP_ID,
-            Apikey: process.env.REACT_APP_API_KEY,
+            Appid:import.meta.env.VITE_APP_APP_ID,
+            Apikey:import.meta.env.VITE_APP_API_KEY,
           },
         });
         const products = response.data.items;
@@ -39,11 +39,11 @@ function App() {
               const response = await axios.get(
                 `https://timbu-get-single-product.reavdev.workers.dev/${product.id}`, {
                   params: {
-                    organization_id: process.env.REACT_APP_ORG_ID,
+                    organization_id: import.meta.env.VITE_APP_ORG_ID,
                     reverse_sort: true,
                     page: 1,
-                    Appid: process.env.REACT_APP_APP_ID,
-                    Apikey: process.env.REACT_APP_API_KEY,
+                    Appid: import.meta.env.VITE_APP_APP_ID,
+                    Apikey: import.meta.env.VITE_APP_API_KEY,
                   }
                 }
               );
