@@ -71,7 +71,7 @@ const FavoriteProductList = ({ products, addToCart }) => {
         {displayedProducts.map(product => (
           <div key={product.id} className="bg-white w-full rounded-xl tablet:w-full phone:w-full">
             <Link to={`/product/${product.id}`}>
-              <img src={`https://api.timbu.cloud/images/${product.photos[0].url}`} alt={product.name} className="w-full mb-2 rounded-t-xl" />
+              <img src={`https://api.timbu.cloud/images/${product.photos[0].url}`} alt={product.name} className="w-full h-[320px] mb-2 rounded-t-xl" />
             </Link>
             <div className='flex flex-row items-center justify-between px-3 py-4'>
               <div className='flex flex-col gap-4'>
