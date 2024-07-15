@@ -6,7 +6,7 @@ import rightArrow from '../icons/RightArrow.svg';
 import AddToCartNotification from '../Components/AddToCartNotification';
 import Navbar from '../Components/Navbar';
 import ColorPicker from '../Components/ColorPicker';
-
+import axios from 'axios';
 const Product = ({ addToCart }) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -16,21 +16,21 @@ const Product = ({ addToCart }) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      
       try {
         const response = await axios.get(
-          `https://timbu-get-single-product.reavdev.workers.dev/${product.id}`, {
+          `https://timbu-get-single-product.reavdev.workers.dev/${id}`, {
             params: {
               organization_id: import.meta.env.VITE_APP_ORG_ID,
-              reverse_sort: true,
               page: 1,
               Appid: import.meta.env.VITE_APP_APP_ID,
               Apikey: import.meta.env.VITE_APP_API_KEY,
             }
           }
-        );
-        const data = await response.json();
-        setProduct(data); 
+         
+
+        )
+        const data = await response.data
+        setProduct(data);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -62,8 +62,6 @@ const Product = ({ addToCart }) => {
   if (!product) {
     return <h2>Loading product...</h2>;
   }
-
-  // Extract image URLs from product.photos
   const productImages = product.photos.map(photo => `/${photo.url}`);
   
   const handleNextImage = () => {
@@ -112,8 +110,9 @@ const Product = ({ addToCart }) => {
 
         <div className="flex-[0.7] px-4 md:px-9 flex flex-col items-start gap-6 phone:gap-10">
           <h2 className="text-3xl md:text-4xl font-semibold">{product.name}</h2>
-          <span className='font-semibold text-2xl text-black'>£{product.current_price}</span>
-          <p className='text-[#747373] md:text-md'>{product.description}</p>
+          <span className='font-semibold text-2xl text-black'>£{product.current_price !== null ? product.current_price:600}</span>
+          <p className='text-[#747373] md:text-md'>{product.description !==null? product.description : `Elevate your living space with our exquisite ${product.name}. Crafted with the finest materials and exceptional attention to detail. Whether youre enhancing your living room, bedroom, or dining area, the ${product.name} offers unmatched comfort and style, making it the perfect addition to any home. Experience the ultimate blend of luxury and practicality with this stunning furniture piece.`}</p>
+
           <div className='flex flex-row gap-2 md:gap-4 mx-auto'>
             <ColorPicker/>
           </div>

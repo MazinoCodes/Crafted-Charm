@@ -48,8 +48,8 @@ function App() {
                 }
               );
               const data = response.data;
-              const rating = data.extra_infos.find((info) => info.key === 'rate')?.value || 'N/A';
-              const category = data.extra_infos.find((info) => info.key === 'category')?.value || 'N/A';
+              const rating = data.extra_infos.find((info) => info.key === 'rate')?.value || '0';
+              const category = data.extra_infos.find((info) => info.key === 'category')?.value || 'Table';
               return { ...product, rating, category };
             } catch (error) {
               console.error(`Failed to fetch extra info for product ${product.id}:`, error);

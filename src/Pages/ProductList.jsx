@@ -52,11 +52,19 @@ const ProductList = ({ products, addToCart }) => {
       case 'az':
         sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
         break;
+        case 'za':
+          sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+          break;
       case 'price':
         sortedProducts.sort(
-          (a, b) => (a.current_price?.[0]?.NGN?.[0] || 0) - (b.current_price?.[0]?.NGN?.[0] || 0)
+          (a, b) => (b.current_price?.[0]?.NGN?.[0] || 0) - (a.current_price?.[0]?.NGN?.[0] || 0)
         );
         break;
+        case 'priceLH':
+          sortedProducts.sort(
+            (a, b) => (a.current_price?.[0]?.NGN?.[0] || 0) - (b.current_price?.[0]?.NGN?.[0] || 0)
+          );
+          break;
       case 'rating':
         sortedProducts.sort((a, b) => b.rating - a.rating);
         break;
@@ -74,7 +82,7 @@ const ProductList = ({ products, addToCart }) => {
     setNotificationItem({
       name: product.name,
       pic: product.photos?.[0]?.url || '',
-      price: product.current_price?.[0]?.NGN?.[0] || 'N/A',
+      price: product.current_price?.[0]?.NGN?.[0] || '600',
     });
     setTimeout(() => {
       setNotificationItem(null);
@@ -114,11 +122,13 @@ const ProductList = ({ products, addToCart }) => {
   const resultStart = startIndex + 1;
   const resultEnd = Math.min(endIndex, filteredProducts.length);
 
-  const filterOptions = ['All Products', 'Living Room', 'Bedroom', 'Dining room', 'Table'];
+  const filterOptions = ['All Products', 'Living room', 'Bedroom', 'Dining room', 'Table'];
   const sortOptions = [
     { value: 'default', label: 'Filter' },
     { value: 'az', label: 'A-Z' },
-    { value: 'price', label: 'Price' },
+    { value: 'za', label: 'Z-A' },
+    { value: 'price', label: 'Price(H)' },
+    { value: 'priceLH', label: 'Price(L)' },
     { value: 'rating', label: 'Rating' },
   ];
 
@@ -144,20 +154,20 @@ const ProductList = ({ products, addToCart }) => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <div className='flex flex-row justify-between w-full mx-auto tablet:flex-col tablet:gap-4 phone:gap-4 text-[#343A40]'>
+        <div className='flex flex-row justify-between w-full mx-auto tablet:flex-col tablet:gap-4 phone:gap-4 text-[#343A40] capitalize'>
           {window.innerWidth < 768 ? (
             <>
               <select
-                className='w-full py-2 px-3 border border-gray-300 rounded-md bg-white text-[#343A40] font-semibold phone:w-fit'
+                className='w-full py-2 px-3 border border-gray-300 rounded-md bg-white text-[#343A40] font-semibold phone:w-fit capitalize'
                 value={selectedFilter}
                 onChange={(e) => handleFilterChange(e.target.value)}
               >
                 {filterOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option} className="capitalize">{option}</option>
                 ))}
               </select>
               <select
-                className='w-full py-2 px-3 border border-gray-300 rounded-md bg-white text-[#343A40] font-semibold phone:w-fit'
+                className='w-full  py-2 px-3 border border-gray-300 rounded-md bg-white text-[#343A40] font-semibold phone:w-fit'
                 value={sortBy}
                 onChange={(e) => handleSortChange(e.target.value)}
               >
@@ -196,7 +206,7 @@ const ProductList = ({ products, addToCart }) => {
             <div key={product.id} className="bg-[#fdfdfd] w-full rounded-xl tablet:w-full phone:w-full border-[#F5F5F5] border">
               <Link to={`/product/${product.id}`}>
               {product.photos.map((photo, index) => (
-              <img key={index} src={`https://api.timbu.cloud/images/${photo.url}`} alt={product.name}  className="w-full mb-2 rounded-t-xl"/>
+              <img key={index} src={`https://api.timbu.cloud/images/${photo.url}`} alt={product.name}  className="w-full h-[320px] mb-2 rounded-t-xl"/>
             ))}
               
               </Link>
@@ -207,7 +217,6 @@ const ProductList = ({ products, addToCart }) => {
                   </Link>
                   <div className='flex flex-col gap-1'>
                      <p className="font-semibold text-2xl">Price: £{product.current_price[0].NGN ? product.current_price[0].NGN[0] : "600"}</p>
-                     <span>{product.category}</span>
                     <p className='text-xs font-normal flex flex-row gap-1 items-center'>
                       <img src={star} alt="" />
                       <span>{product.rating} </span>
