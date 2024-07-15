@@ -43,7 +43,6 @@ const ProductList = ({ products, addToCart }) => {
 
         setExtraInfo(extraInfoMap);
 
-        // Enhance products with ratings and categories
         const enrichedProducts = products.map((product) => ({
           ...product,
           rating: extraInfoMap[product.id]?.rating || 'N/A',
