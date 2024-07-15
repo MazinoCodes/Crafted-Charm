@@ -11,7 +11,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
     return (
       <div className='w-full h-screen flex items-center justify-center flex-col gap-6'>
         <h2 className='text-2xl'>Your Cart is empty</h2>
-        <Link to="/ourproducts">
+        <Link to="/">
           <button className="bg-[#343A40] text-white text-sm py-2 px-3 rounded flex flex-row items-center gap-2">
             Checkout our Store <img src={arrow} alt="" />
           </button>
@@ -19,7 +19,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
       </div>
     );
   }
-
+console.log(1)
   const handleRemoveOne = (item) => {
     if (item.quantity > 1) {
       removeFromCart({ ...item, quantity: item.quantity - 1 });
@@ -36,7 +36,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
     addToCart(item, 1);
   };
 
-  const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalAmount = cartItems.reduce((sum, item) => sum + (item.current_price[0].NGN ? item.current_price[0].NGN[0] : "600") * item.quantity, 0);
 
   return (
     <div className='flex flex-col pt-7 w-[100vw] gap-9 px-6 bg-white phone:w-[100vw] tablet:w-[100vw]'>
@@ -47,7 +47,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
           {cartItems.map(item => (
             <li key={item.id} className='flex flex-col md:flex-row w-full border-b-2 items-center justify-between p-3 pb-7 gap-5 tablet:flex-col'>
 
-                <Link to={`/product/${item.id}`}  className='flex flex-row items-center gap-6 w-full md:w-auto phone:gap-3 tablet:gap-3'><img src={item.pic} alt={item.name} className='w-32 md:w-20 rounded-xl' />
+                <Link to={`/product/${item.id}`}  className='flex flex-row items-center gap-6 w-full md:w-auto phone:gap-3 tablet:gap-3'><img src={`/api/images/${item.photos[0].url}`} alt={item.name} className='w-32 md:w-40 rounded-xl' />
                 <span className='font-semibold text-base'>{item.name}</span></Link>
               <div className='flex flex-row justify-between gap-20 phone:items-center phone:w-full phone:gap-5 tablet:items-center tablet:w-full tablet:gap-5'>
               <select className='custom-select border border-black px-2 py-3 rounded-[10px] phone:px-0 phone:py-0 phone:w-fit phone:border-0 tablet:px-0 tablet:py-0 tablet:w-fit tablet:border-0'>
@@ -66,7 +66,7 @@ const Cart = ({ cartItems, removeFromCart, addToCart, removeItemFromCart }) => {
                     <span>{item.quantity}</span>
                     <button onClick={() => handleAddOne(item)} className='w-full'><img src={plus} alt="" /></button>
                   </div>
-                  <span className='font-semibold text-xl'>£{(item.price * item.quantity).toFixed(2)}</span>
+                  <span className='font-semibold text-xl'>£{(item.current_price[0].NGN ? item.current_price[0].NGN[0] : "600" * item.quantity).toFixed(2)}</span>
                   <button onClick={() => handleRemoveAll(item)}><img src={remove} alt="" /></button>
                 </div>
               </div>

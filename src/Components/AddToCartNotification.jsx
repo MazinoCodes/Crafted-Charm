@@ -19,10 +19,10 @@ const AddToCartNotification = ({ item, onClose }) => {
 
   return (
     <div className="fixed bottom-4 right-4 bg-white border rounded shadow-lg p-4 flex items-center gap-4">
-      <img src={item.pic} alt={item.name} className="w-12 h-12 rounded" />
+      <img src={`/api/images/${item.pic}`} alt={item.name} className="w-12 h-12 rounded" />
       <div>
         <h4 className="font-semibold">{item.name}</h4>
-        <p>£{item.price.toFixed(2)}</p>
+        <p>£{item.price !== null ? item.price : 600}</p>
         <p>Added to cart</p>
       </div>
     </div>

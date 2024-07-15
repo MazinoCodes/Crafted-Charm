@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import AddToCartNotification from './AddToCartNotification';
+import AddToCartNotification from '../Components/AddToCartNotification';
 import star from '../icons/Star.svg';
 import heart from '../icons/Heart.svg';
 import heartFilled from '../icons/heart-filled.svg';
@@ -64,10 +64,14 @@ const ProductList = ({ products, addToCart }) => {
 
   const handleAddToCart = (product) => {
     addToCart(product);
-    setNotificationItem(product);
+    setNotificationItem({
+      name: product.name,
+      pic: product.photos[0].url,
+      price: product.current_price[0].NGN[0] !==null ? product.current_price[0].NGN[0]:'600' ,
+    });
     setTimeout(() => {
       setNotificationItem(null);
-    }, 3000);
+    }, 9000);
   };
 
   const handlePageChange = (page) => {
@@ -193,7 +197,10 @@ const ProductList = ({ products, addToCart }) => {
           {displayedProducts.map(product => (
             <div key={product.id} className="bg-[#fdfdfd] w-full rounded-xl tablet:w-full phone:w-full border-[#F5F5F5] border">
               <Link to={`/product/${product.id}`}>
-                <img src={product.pic} alt={product.name} className="w-full mb-2 rounded-t-xl" />
+              {product.photos.map((photo, index) => (
+              <img key={index} src={`/api/images/${photo.url}`} alt={product.name}  className="w-full mb-2 rounded-t-xl"/>
+            ))}
+              
               </Link>
               <div className='flex flex-row items-center justify-between px-3 py-4'>
                 <div className='flex flex-col gap-4'>
@@ -201,7 +208,7 @@ const ProductList = ({ products, addToCart }) => {
                     <h3 className="text-lg font-semibold">{product.name}</h3>
                   </Link>
                   <div className='flex flex-col gap-1'>
-                    <p className="font-semibold text-2xl">£{product.price.toFixed(2)}</p>
+                     <p className="font-semibold text-2xl">Price: £{product.current_price[0].NGN ? product.current_price[0].NGN[0] : "600"}</p>
                     <p className='text-xs font-normal flex flex-row gap-1 items-center'>
                       <img src={star} alt="" />
                       <span>{product.rating} </span>
@@ -223,7 +230,7 @@ const ProductList = ({ products, addToCart }) => {
           <AddToCartNotification item={notificationItem} onClose={() => setNotificationItem(null)} />
         )}
         <div className='flex justify-center items-center mt-4 w-full'>
-          <div className='flex gap-2'>
+          <div className='flex gap-2 w-full items-center justify-center'>
             <button
               className={`px-3 py-2 mx-2 rounded-[24px] border border-[#E2E6E8] text-[#5F676D]  text-[16px] bg-[#343A40] ${currentPage === 1 ? 'cursor-not-allowed opacity-50 bg-[#343A4099]' : ''}`}
               onClick={handlePrevPage}

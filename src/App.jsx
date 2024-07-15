@@ -4,31 +4,42 @@ import './App.css';
 import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import Product from './Pages/Product';
-import Homepage from './Pages/Homepage';
+import Homepage from './Components/Homepage';
 import Payment from './Pages/Payment';
 import FavoriteProductList from './Components/FavoriteProductList';
-import ProductList from './Components/ProductList';
 import Navbar from './Components/Navbar';
+import axios from 'axios';
 
 function App() {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProducts = async (page) => {
+      setLoading(true);
+      setError('');
       try {
-        const response = await fetch('https://api.timbu.cloud/products?organization_id=aff54f42cb464ae5adb9aec344de55fc&reverse_sort=false&page=1&Appid=2NWQH5W7FNE8ML5&Apikey=c55837c91c304d08876ffc9ba3ea484a20240712135232555921');
-        const data = await response.json();
-        setProducts(data.products); // Assuming the response structure
-      } catch (error) {
-        console.error('Error fetching products:', error);
+        const response = await axios.get('https://timbu-get-all-products.reavdev.workers.dev/', {
+          params: {
+            organization_id: 'a6f9987b21424f83ad7b2dd34dfd6da2',
+            reverse_sort: true,
+            page: page,
+            size: 30,
+            Appid: 'E77TEKW1ASD0G0J',
+            Apikey: '3abc772599e34d95a8e35bb58adf98a420240712204745465546',
+          },
+        });
+        setProducts(response.data.items);
+      } catch (err) {
+        setError('Failed to fetch products');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchProducts();
+    fetchProducts(1); 
   }, []);
 
   const addToCart = (product, quantity = 1) => {
@@ -70,7 +81,12 @@ function App() {
       <div>Loading...</div>
     ) : (
       <Routes>
-        <Route path="/" exact element={<Homepage products={products} addToCart={addToCart} />} />
+        <Route path="/" exact element={
+          <>
+            {error && <h1>{error}</h1>}
+            <Homepage products={products} addToCart={addToCart} />
+          </>
+        } />
         <Route path="/cart" exact element={<Cart cartItems={cart} removeFromCart={removeFromCart} addToCart={addToCart} removeItemFromCart={removeItemFromCart} />} />
         <Route path="/checkout" exact element={<Checkout cartItems={cart} />} />
         <Route path="/product/:id" element={<Product products={products} addToCart={addToCart} />} />
@@ -79,12 +95,6 @@ function App() {
           <div className='mt-4'>
             <Navbar />
             <FavoriteProductList products={products} addToCart={addToCart} />
-          </div>
-        } />
-        <Route path="/ourproducts" exact element={
-          <div className='mt-4'>
-            <Navbar />
-            <ProductList products={products} addToCart={addToCart} />
           </div>
         } />
       </Routes>

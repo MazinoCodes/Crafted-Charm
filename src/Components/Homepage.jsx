@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import ProductList from '../Components/ProductList';
-import Footer from '../Components/Footer';
-import Contact from '../Components/Contact';
-import Navbar from '../Components/Navbar';
-
+import ProductList from '../Pages/ProductList';
+import Footer from './Footer';
+import Contact from './Contact';
+import Navbar from './Navbar';
 const Homepage = ({ products, addToCart }) => {
 
   return (
