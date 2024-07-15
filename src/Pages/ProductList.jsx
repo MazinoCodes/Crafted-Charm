@@ -206,7 +206,7 @@ const ProductList = ({ products, addToCart }) => {
                     <h3 className="text-lg font-semibold">{product.name}</h3>
                   </Link>
                   <div className='flex flex-col gap-1'>
-                     <p className="font-semibold text-2xl">Price: £{product.current_price[0].NGN ? product.current_price[0].NGN[0] : "N/A"}</p>
+                     <p className="font-semibold text-2xl">Price: £{product.current_price[0].NGN ? product.current_price[0].NGN[0] : "600"}</p>
                      <span>{product.category}</span>
                     <p className='text-xs font-normal flex flex-row gap-1 items-center'>
                       <img src={star} alt="" />
