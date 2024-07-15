@@ -23,12 +23,12 @@ function App() {
       try {
         const response = await axios.get('https://timbu-get-all-products.reavdev.workers.dev/', {
           params: {
-            organization_id: 'a6f9987b21424f83ad7b2dd34dfd6da2',
+            organization_id: process.env.REACT_APP_ORG_ID,
             reverse_sort: true,
             page: page,
             size: 30,
-            Appid: 'E77TEKW1ASD0G0J',
-            Apikey: '3abc772599e34d95a8e35bb58adf98a420240712204745465546',
+            Appid: process.env.REACT_APP_APP_ID,
+            Apikey:process.env.REACT_APP_API_KEY,
           },
         });
         const products = response.data.items;
@@ -36,7 +36,7 @@ function App() {
         const extraInfoData = await Promise.all(
           products.map(async (product) => {
             const response = await fetch(
-              `https://timbu-get-single-product.reavdev.workers.dev/${product.id}?organization_id=a6f9987b21424f83ad7b2dd34dfd6da2&reverse_sort=true&page=1&Appid=E77TEKW1ASD0G0J&Apikey=3abc772599e34d95a8e35bb58adf98a420240712204745465546`
+              `https://timbu-get-single-product.reavdev.workers.dev/${product.id}?organization_id=${process.env.REACT_APP_ORG_ID}&reverse_sort=true&page=1&Appid=${process.env.REACT_APP_APP_ID}&Apikey=${process.env.REACT_APP_API_KEY}`
             );
             const data = await response.json();
             const rating = data.extra_infos.find((info) => info.key === 'rate')?.value || 'N/A';

@@ -7,7 +7,7 @@ import AddToCartNotification from '../Components/AddToCartNotification';
 import Navbar from '../Components/Navbar';
 import ColorPicker from '../Components/ColorPicker';
 
-const Product = ({products, addToCart }) => {
+const Product = ({ addToCart }) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -17,7 +17,7 @@ const Product = ({products, addToCart }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://timbu-get-single-product.reavdev.workers.dev/${id}?organization_id=a6f9987b21424f83ad7b2dd34dfd6da2&reverse_sort=true&page=1&Appid=E77TEKW1ASD0G0J&Apikey=3abc772599e34d95a8e35bb58adf98a420240712204745465546`);
+        const response = await fetch(`https://timbu-get-single-product.reavdev.workers.dev/${id}?organization_id=${process.env.REACT_APP_ORG_ID}&reverse_sort=true&page=1&Appid=${process.env.REACT_APP_APP_ID}&Apikey=${process.env.REACT_APP_API_KEY}`);
         const data = await response.json();
         setProduct(data); 
       } catch (error) {
