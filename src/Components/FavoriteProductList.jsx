@@ -71,7 +71,7 @@ const FavoriteProductList = ({ products, addToCart }) => {
         {displayedProducts.map(product => (
           <div key={product.id} className="bg-white w-full rounded-xl tablet:w-full phone:w-full">
             <Link to={`/product/${product.id}`}>
-              <img src={product.pic} alt={product.name} className="w-full mb-2 rounded-t-xl" />
+              <img src={`https://api.timbu.cloud/images/${product.photos[0].url}`} alt={product.name} className="w-full mb-2 rounded-t-xl" />
             </Link>
             <div className='flex flex-row items-center justify-between px-3 py-4'>
               <div className='flex flex-col gap-4'>
@@ -79,7 +79,7 @@ const FavoriteProductList = ({ products, addToCart }) => {
                   <h3 className="text-lg font-semibold">{product.name}</h3>
                 </Link>
                 <div className='flex flex-col gap-1'>
-                  <p className="font-semibold text-2xl">£{product.price.toFixed(2)}</p>
+                  <p className="font-semibold text-2xl">£{product.current_price[0].NGN ? product.current_price[0].NGN[0] : "600"}</p>
                   <p className='text-xs font-normal flex flex-row gap-1'>
                     <img src={star} alt="" />{product.rating} 
                     <span className='text-[#747373]'> ({product.review} Reviews) </span>

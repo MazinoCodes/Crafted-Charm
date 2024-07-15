@@ -90,7 +90,7 @@ const Product = ({products, addToCart }) => {
             {productImages.map((pic, index) => (
               <img
                 key={index}
-                src={`/api/images/${pic}`}
+                src={`https://api.timbu.cloud/images/${pic}`}
                 alt={`${product.name} ${index + 1}`}
                 className={`w-16 h-16 md:w-20 md:h-20 cursor-pointer border-[0.8px] border-[#343A40] ${index === currentImageIndex ? 'border-yellow-600' : ''}`}
                 onClick={() => setCurrentImageIndex(index)}

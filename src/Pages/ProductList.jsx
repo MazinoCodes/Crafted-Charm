@@ -15,10 +15,40 @@ const ProductList = ({ products, addToCart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [favorites, setFavorites] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState('All Products');
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortBy, setSortBy] = useState('default');
   const [searchQuery, setSearchQuery] = useState('');
+  const [extraInfo, setExtraInfo] = useState({});
   const itemsPerPage = 12;
+
+  useEffect(() => {
+    const fetchExtraInfo = async () => {
+      try {
+        const extraInfoData = await Promise.all(
+          products.map(async (product) => {
+            const response = await fetch(
+              `https://timbu-get-single-product.reavdev.workers.dev/${product.id}?organization_id=a6f9987b21424f83ad7b2dd34dfd6da2&reverse_sort=true&page=1&Appid=E77TEKW1ASD0G0J&Apikey=3abc772599e34d95a8e35bb58adf98a420240712204745465546`
+            );
+            const data = await response.json();
+            const rating = data.extra_infos.find((info) => info.key === 'rate')?.value || 'N/A';
+            const category = data.extra_infos.find((info) => info.key === 'category')?.value || 'N/A';
+            return { id: product.id, rating, category };
+          })
+        );
+
+        const extraInfoMap = extraInfoData.reduce((acc, info) => {
+          acc[info.id] = { rating: info.rating, category: info.category };
+          return acc;
+        }, {});
+
+        setExtraInfo(extraInfoMap);
+      } catch (error) {
+        console.error('Error fetching extra product info:', error);
+      }
+    };
+
+    fetchExtraInfo();
+  }, [products]);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -26,21 +56,24 @@ const ProductList = ({ products, addToCart }) => {
   }, []);
 
   useEffect(() => {
-    let filtered = products;
+    let filtered = products.map((product) => ({
+      ...product,
+      ...extraInfo[product.id],
+    }));
 
     if (selectedFilter !== 'All Products') {
-      filtered = products.filter(product => product.category === selectedFilter);
+      filtered = filtered.filter((product) => product.category === selectedFilter);
     }
 
     if (searchQuery) {
-      filtered = filtered.filter(product =>
+      filtered = filtered.filter((product) =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
     setFilteredProducts(filtered);
     setCurrentPage(1);
-  }, [selectedFilter, searchQuery, products]);
+  }, [selectedFilter, searchQuery, products, extraInfo]);
 
   useEffect(() => {
     let sortedProducts = [...filteredProducts];
@@ -49,7 +82,9 @@ const ProductList = ({ products, addToCart }) => {
         sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
         break;
       case 'price':
-        sortedProducts.sort((a, b) => a.price - b.price);
+        sortedProducts.sort(
+          (a, b) => (a.current_price?.[0]?.NGN?.[0] || 0) - (b.current_price?.[0]?.NGN?.[0] || 0)
+        );
         break;
       case 'rating':
         sortedProducts.sort((a, b) => b.rating - a.rating);
@@ -66,8 +101,8 @@ const ProductList = ({ products, addToCart }) => {
     addToCart(product);
     setNotificationItem({
       name: product.name,
-      pic: product.photos[0].url,
-      price: product.current_price[0].NGN[0] !==null ? product.current_price[0].NGN[0]:'600' ,
+      pic: product.photos?.[0]?.url || '',
+      price: product.current_price?.[0]?.NGN?.[0] || 'N/A',
     });
     setTimeout(() => {
       setNotificationItem(null);
@@ -104,23 +139,15 @@ const ProductList = ({ products, addToCart }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const displayedProducts = filteredProducts.slice(startIndex, endIndex);
-
   const resultStart = startIndex + 1;
   const resultEnd = Math.min(endIndex, filteredProducts.length);
 
-  const filterOptions = [
-    'All Products',
-    'Living Room',
-    'Bedroom',
-    'Dining Room',
-    'Table',
-  ];
-
+  const filterOptions = ['All Products', 'Living Room', 'Bedroom', 'Dining Room', 'Table'];
   const sortOptions = [
     { value: 'default', label: 'Filter' },
     { value: 'az', label: 'A-Z' },
     { value: 'price', label: 'Price' },
-    { value: 'rating', label: 'Rating' }
+    { value: 'rating', label: 'Rating' },
   ];
 
   const handleFilterChange = (filter) => {
@@ -130,7 +157,6 @@ const ProductList = ({ products, addToCart }) => {
   const handleSortChange = (sort) => {
     setSortBy(sort);
   };
-
   return (
     <div id='ourproducts' className='flex flex-col w-[95vw] gap-10 mx-auto tablet:px-6 phone:px-4 pt-5 bg-white pr-6 pl-3'>
       <div className='flex flex-col items-center justify-start gap-9'>
@@ -208,11 +234,11 @@ const ProductList = ({ products, addToCart }) => {
                     <h3 className="text-lg font-semibold">{product.name}</h3>
                   </Link>
                   <div className='flex flex-col gap-1'>
-                     <p className="font-semibold text-2xl">Price: £{product.current_price[0].NGN ? product.current_price[0].NGN[0] : "600"}</p>
+                     <p className="font-semibold text-2xl">Price: £{product.current_price[0].NGN ? product.current_price[0].NGN[0] : "N/A"}</p>
                     <p className='text-xs font-normal flex flex-row gap-1 items-center'>
                       <img src={star} alt="" />
                       <span>{product.rating} </span>
-                      <span className='text-[#747373]'> ({product.review} Reviews) </span>
+                      <span className='text-[#747373]'> ({product.rating} Reviews) </span>
                     </p>
                   </div>
                 </div>
@@ -230,7 +256,7 @@ const ProductList = ({ products, addToCart }) => {
           <AddToCartNotification item={notificationItem} onClose={() => setNotificationItem(null)} />
         )}
         <div className='flex justify-center items-center mt-4 w-full'>
-          <div className='flex gap-2 w-full items-center justify-center'>
+          <div className='flex gap-2'>
             <button
               className={`px-3 py-2 mx-2 rounded-[24px] border border-[#E2E6E8] text-[#5F676D]  text-[16px] bg-[#343A40] ${currentPage === 1 ? 'cursor-not-allowed opacity-50 bg-[#343A4099]' : ''}`}
               onClick={handlePrevPage}
