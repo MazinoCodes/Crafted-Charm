@@ -42,15 +42,6 @@ const ProductList = ({ products, addToCart }) => {
         }, {});
 
         setExtraInfo(extraInfoMap);
-
-        // Enhance products with ratings and categories
-        const enrichedProducts = products.map((product) => ({
-          ...product,
-          rating: extraInfoMap[product.id]?.rating || 'N/A',
-          category: extraInfoMap[product.id]?.category || 'N/A',
-        }));
-
-        setFilteredProducts(enrichedProducts);
       } catch (error) {
         console.error('Error fetching extra product info:', error);
       }
@@ -68,7 +59,6 @@ const ProductList = ({ products, addToCart }) => {
     let filtered = products.map((product) => ({
       ...product,
       ...extraInfo[product.id],
-      rating: extraInfo[product.id]?.rating || 'N/A', 
     }));
 
     if (selectedFilter !== 'All Products') {
@@ -80,7 +70,7 @@ const ProductList = ({ products, addToCart }) => {
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-  
+
     setFilteredProducts(filtered);
     setCurrentPage(1);
   }, [selectedFilter, searchQuery, products, extraInfo]);
