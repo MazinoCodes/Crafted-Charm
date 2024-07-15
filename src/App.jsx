@@ -4,7 +4,7 @@ import './App.css';
 import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import Product from './Pages/Product';
-import Homepage from './Components/Homepage';
+import Homepage from './Pages/Homepage';
 import Payment from './Pages/Payment';
 import FavoriteProductList from './Components/FavoriteProductList';
 import Navbar from './Components/Navbar';
@@ -31,7 +31,21 @@ function App() {
             Apikey: '3abc772599e34d95a8e35bb58adf98a420240712204745465546',
           },
         });
-        setProducts(response.data.items);
+        const products = response.data.items;
+
+        const extraInfoData = await Promise.all(
+          products.map(async (product) => {
+            const response = await fetch(
+              `https://timbu-get-single-product.reavdev.workers.dev/${product.id}?organization_id=a6f9987b21424f83ad7b2dd34dfd6da2&reverse_sort=true&page=1&Appid=E77TEKW1ASD0G0J&Apikey=3abc772599e34d95a8e35bb58adf98a420240712204745465546`
+            );
+            const data = await response.json();
+            const rating = data.extra_infos.find((info) => info.key === 'rate')?.value || 'N/A';
+            const category = data.extra_infos.find((info) => info.key === 'category')?.value || 'N/A';
+            return { ...product, rating, category };
+          })
+        );
+
+        setProducts(extraInfoData);
       } catch (err) {
         setError('Failed to fetch products');
       } finally {
@@ -39,7 +53,7 @@ function App() {
       }
     };
 
-    fetchProducts(1); 
+    fetchProducts(1);
   }, []);
 
   const addToCart = (product, quantity = 1) => {

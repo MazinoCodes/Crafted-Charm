@@ -15,48 +15,10 @@ const ProductList = ({ products, addToCart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [favorites, setFavorites] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState('All Products');
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortBy, setSortBy] = useState('default');
   const [searchQuery, setSearchQuery] = useState('');
-  const [extraInfo, setExtraInfo] = useState({});
   const itemsPerPage = 12;
-
-  useEffect(() => {
-    const fetchExtraInfo = async () => {
-      try {
-        const extraInfoData = await Promise.all(
-          products.map(async (product) => {
-            const response = await fetch(
-              `https://timbu-get-single-product.reavdev.workers.dev/${product.id}?organization_id=a6f9987b21424f83ad7b2dd34dfd6da2&reverse_sort=true&page=1&Appid=E77TEKW1ASD0G0J&Apikey=3abc772599e34d95a8e35bb58adf98a420240712204745465546`
-            );
-            const data = await response.json();
-            const rating = data.extra_infos.find((info) => info.key === 'rate')?.value || 'N/A';
-            const category = data.extra_infos.find((info) => info.key === 'category')?.value || 'N/A';
-            return { id: product.id, rating, category };
-          })
-        );
-
-        const extraInfoMap = extraInfoData.reduce((acc, info) => {
-          acc[info.id] = { rating: info.rating, category: info.category };
-          return acc;
-        }, {});
-
-        setExtraInfo(extraInfoMap);
-
-        const enrichedProducts = products.map((product) => ({
-          ...product,
-          rating: extraInfoMap[product.id]?.rating || 'N/A',
-          category: extraInfoMap[product.id]?.category || 'N/A',
-        }));
-
-        setFilteredProducts(enrichedProducts);
-      } catch (error) {
-        console.error('Error fetching extra product info:', error);
-      }
-    };
-
-    fetchExtraInfo();
-  }, [products]);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -66,8 +28,8 @@ const ProductList = ({ products, addToCart }) => {
   useEffect(() => {
     let filtered = products.map((product) => ({
       ...product,
-      ...extraInfo[product.id],
-      rating: extraInfo[product.id]?.rating || 'N/A', 
+      rating: product.rating || 'N/A', 
+      category: product.category || 'N/A',
     }));
 
     if (selectedFilter !== 'All Products') {
@@ -79,10 +41,10 @@ const ProductList = ({ products, addToCart }) => {
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-  
+
     setFilteredProducts(filtered);
     setCurrentPage(1);
-  }, [selectedFilter, searchQuery, products, extraInfo]);
+  }, [selectedFilter, searchQuery, products]);
 
   useEffect(() => {
     let sortedProducts = [...filteredProducts];
@@ -103,6 +65,7 @@ const ProductList = ({ products, addToCart }) => {
     }
     setFilteredProducts(sortedProducts);
   }, [sortBy, filteredProducts]);
+
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 

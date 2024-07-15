@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
 import ProductList from '../Pages/ProductList';
-import Footer from './Footer';
-import Contact from './Contact';
-import Navbar from './Navbar';
-const Homepage = ({ products, addToCart }) => {
+import Footer from '../Components/Footer';
+import Contact from '../Components/Contact';
+import Navbar from '../Components/Navbar';
+import { useState, useEffect } from 'react';
+const Homepage = ({ products, addToCart, extraInfo }) => {
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  useEffect(() => {
+    setFilteredProducts(products);
+  }, [products]);
 
   return (
     <div className="bg-white flex flex-col gap-15 w-[100vw] mx-auto  phone:gap-10   tablet:gap-5">
@@ -12,7 +18,7 @@ const Homepage = ({ products, addToCart }) => {
 
       </div>
       <div className='w-[100vw] bg-white flex flex-col gap-32'>
-      <ProductList products={products} addToCart={addToCart}  />
+      <ProductList products={filteredProducts} addToCart={addToCart}   />
     <Contact/>
       </div>
 
