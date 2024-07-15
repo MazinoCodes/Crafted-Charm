@@ -28,20 +28,33 @@ function App() {
             page: page,
             size: 30,
             Appid: process.env.REACT_APP_APP_ID,
-            Apikey:process.env.REACT_APP_API_KEY,
+            Apikey: process.env.REACT_APP_API_KEY,
           },
         });
         const products = response.data.items;
 
         const extraInfoData = await Promise.all(
           products.map(async (product) => {
-            const response = await fetch(
-              `https://timbu-get-single-product.reavdev.workers.dev/${product.id}?organization_id=${process.env.REACT_APP_ORG_ID}&reverse_sort=true&page=1&Appid=${process.env.REACT_APP_APP_ID}&Apikey=${process.env.REACT_APP_API_KEY}`
-            );
-            const data = await response.json();
-            const rating = data.extra_infos.find((info) => info.key === 'rate')?.value || 'N/A';
-            const category = data.extra_infos.find((info) => info.key === 'category')?.value || 'N/A';
-            return { ...product, rating, category };
+            try {
+              const response = await axios.get(
+                `https://timbu-get-single-product.reavdev.workers.dev/${product.id}`, {
+                  params: {
+                    organization_id: process.env.REACT_APP_ORG_ID,
+                    reverse_sort: true,
+                    page: 1,
+                    Appid: process.env.REACT_APP_APP_ID,
+                    Apikey: process.env.REACT_APP_API_KEY,
+                  }
+                }
+              );
+              const data = response.data;
+              const rating = data.extra_infos.find((info) => info.key === 'rate')?.value || 'N/A';
+              const category = data.extra_infos.find((info) => info.key === 'category')?.value || 'N/A';
+              return { ...product, rating, category };
+            } catch (error) {
+              console.error(`Failed to fetch extra info for product ${product.id}:`, error);
+              return { ...product, rating: 'N/A', category: 'N/A' };
+            }
           })
         );
 
