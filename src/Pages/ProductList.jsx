@@ -15,7 +15,7 @@ const ProductList = ({ products, addToCart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [favorites, setFavorites] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState('All Products');
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortBy, setSortBy] = useState('default');
   const [searchQuery, setSearchQuery] = useState('');
   const [extraInfo, setExtraInfo] = useState({});
@@ -64,13 +64,16 @@ const ProductList = ({ products, addToCart }) => {
     if (selectedFilter !== 'All Products') {
       filtered = filtered.filter((product) => product.category === selectedFilter);
     }
+  if(selectedFilter == 'All Products'){
+    setFilteredProducts(products)
+  }
 
     if (searchQuery) {
       filtered = filtered.filter((product) =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-
+  
     setFilteredProducts(filtered);
     setCurrentPage(1);
   }, [selectedFilter, searchQuery, products, extraInfo]);
@@ -142,7 +145,7 @@ const ProductList = ({ products, addToCart }) => {
   const resultStart = startIndex + 1;
   const resultEnd = Math.min(endIndex, filteredProducts.length);
 
-  const filterOptions = ['All Products', 'Living Room', 'Bedroom', 'Dining Room', 'Table'];
+  const filterOptions = ['All Products', 'Living Room', 'Bedroom', 'Dining room', 'Table'];
   const sortOptions = [
     { value: 'default', label: 'Filter' },
     { value: 'az', label: 'A-Z' },
@@ -235,6 +238,7 @@ const ProductList = ({ products, addToCart }) => {
                   </Link>
                   <div className='flex flex-col gap-1'>
                      <p className="font-semibold text-2xl">Price: £{product.current_price[0].NGN ? product.current_price[0].NGN[0] : "N/A"}</p>
+                     <span>{product.category}</span>
                     <p className='text-xs font-normal flex flex-row gap-1 items-center'>
                       <img src={star} alt="" />
                       <span>{product.rating} </span>
