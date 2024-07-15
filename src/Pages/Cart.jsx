@@ -47,7 +47,7 @@ console.log(1)
           {cartItems.map(item => (
             <li key={item.id} className='flex flex-col md:flex-row w-full border-b-2 items-center justify-between p-3 pb-7 gap-5 tablet:flex-col'>
 
-                <Link to={`/product/${item.id}`}  className='flex flex-row items-center gap-6 w-full md:w-auto phone:gap-3 tablet:gap-3'><img src={`/api/images/${item.photos[0].url}`} alt={item.name} className='w-32 md:w-40 rounded-xl' />
+                <Link to={`/product/${item.id}`}  className='flex flex-row items-center gap-6 w-full md:w-auto phone:gap-3 tablet:gap-3'><img src={`https://api.timbu.cloud/images/${item.photos[0].url}`} alt={item.name} className='w-32 md:w-40 rounded-xl' />
                 <span className='font-semibold text-base'>{item.name}</span></Link>
               <div className='flex flex-row justify-between gap-20 phone:items-center phone:w-full phone:gap-5 tablet:items-center tablet:w-full tablet:gap-5'>
               <select className='custom-select border border-black px-2 py-3 rounded-[10px] phone:px-0 phone:py-0 phone:w-fit phone:border-0 tablet:px-0 tablet:py-0 tablet:w-fit tablet:border-0'>

@@ -81,7 +81,7 @@ const Product = ({products, addToCart }) => {
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handlePrevImage}>
               <img src={leftArrow} alt="Previous" />
             </button>
-            <img src={`/api/images/${productImages[currentImageIndex]}`} alt={product.name} className="w-[400px] md:w-[400px] rounded-[5%] phone:w-[230px] tablet:w-[300px]" />
+            <img src={`https://api.timbu.cloud/images/${productImages[currentImageIndex]}`} alt={product.name} className="w-[400px] md:w-[400px] rounded-[5%] phone:w-[230px] tablet:w-[300px]" />
             <button className="bg-[#343A4099] px-3 py-2 rounded-[48px]" onClick={handleNextImage}>
               <img src={rightArrow} alt="Next" />
             </button>

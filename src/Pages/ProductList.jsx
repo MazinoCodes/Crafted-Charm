@@ -198,7 +198,7 @@ const ProductList = ({ products, addToCart }) => {
             <div key={product.id} className="bg-[#fdfdfd] w-full rounded-xl tablet:w-full phone:w-full border-[#F5F5F5] border">
               <Link to={`/product/${product.id}`}>
               {product.photos.map((photo, index) => (
-              <img key={index} src={`/api/images/${photo.url}`} alt={product.name}  className="w-full mb-2 rounded-t-xl"/>
+              <img key={index} src={`https://api.timbu.cloud/images/${photo.url}`} alt={product.name}  className="w-full mb-2 rounded-t-xl"/>
             ))}
               
               </Link>
